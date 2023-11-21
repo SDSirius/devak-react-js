@@ -1,0 +1,126 @@
+@import "./configs.scss";
+
+.main-area {
+    display: flex;
+    flex: 1;
+    margin-left: 21%;
+    margin-right: 1%;
+    margin-top: 6%;
+
+    .search-bar {
+        display: flex;
+        position: fixed;
+        top: 130px;
+        left: 21%;
+        max-width: 100%;
+    
+        height: 45px;
+        justify-content: flex-start;
+    }
+    
+    .container-cars {
+        
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        
+        
+        .cars-object {
+            padding: 1%;
+            width: 32%;   
+            border: 1px solid black;
+            border-radius: 25px;
+            margin: 0.5%;
+            .h1 {
+                font-family: $fontBold;
+                display: flex;
+                align-items: center;
+            }
+            .container-cars-object {
+                display: flex;
+                align-items: center;
+                justify-content: space-evenly;
+                
+                .cars-id{
+                    font-size: 20px;
+                    img {
+                        width: 200px;
+                        height: 150px;
+                        border: 1px solid black;
+                        border-radius: 5%;
+                    }
+
+
+                }    
+                .cars-specs {
+                    font-size: 16px;
+                    img {
+                        height: 20px;
+                        width: 20px;
+                    }
+                }
+            }
+    
+        }
+    
+    }
+
+    .search-bar {
+        display: flex;
+        position: fixed;
+        top: 130px;
+        left: 21%;
+        max-width: 100%;
+    
+        height: 45px;
+        justify-content: flex-start;
+    }
+    
+    .container-car {
+        
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        
+        
+        .car-object {
+            padding: 1%;
+            width: 45%;   
+            border: 1px solid black;
+            border-radius: 25px;
+            margin: 0.5%;
+            .h1 {
+                font-family: $fontBold;
+                font-size: 25px;
+                display: flex;
+                align-items: center;
+            }
+            .container-car-object {
+                display: flex;
+                align-items: center;
+                justify-content: space-evenly;
+                
+                .car-id{
+                    font-size: 20px;
+                    img {
+                        width: 200px;
+                        height: 150px;
+                        border: 1px solid black;
+                        border-radius: 5%;
+                    }
+
+
+                }    
+                .car-specs {
+                    font-size: 16px;
+                    img {
+                        height: 20px;
+                        width: 20px;
+                    }
+                }
+            }
+    
+        }
+    
+    }
+}
