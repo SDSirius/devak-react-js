@@ -4,8 +4,8 @@ import { Register } from "../views/Register";
 import { Home } from "../views/Home";
 import { Profile } from "../views/Profile";
 import { AddCar } from "../views/AddCar";
-// import { UserView } from "../views/UserView";
-// import { CarView } from "../views/CarView";
+import { CarView } from "../views/CarView";
+import { UserView } from "../views/UserView";
 
 
 export const getRouter = (token:string) => {
@@ -25,16 +25,13 @@ export const getRouter = (token:string) => {
                 path: '/register',
                 id: 'register',
                 element: <Register />
+            },{
+                path: '/userView/:id',
+                element: <UserView />
+            },{
+                path: '/carView/:id',
+                element: <CarView />
             }
-                // },{
-            //     path: '/userView',
-            //     id: 'userView',
-            //     element: <UserView  />
-            // },{
-            //     path: '/carView',
-            //     id: 'carView',
-            //     element: <CarView id="someCarId" />
-            // }
         ]);
     }else{
         return  createBrowserRouter([
@@ -53,15 +50,15 @@ export const getRouter = (token:string) => {
                 id: 'user',
                 element: <Profile />
             }
-            // ,{
-            //     path: '/userView',
-            //     id: 'userView',
-            //     element: <UserView id="someUserId" />
-            // },{
-            //     path: '/carView',
-            //     id: 'carView',
-            //     element: <CarView id="someCarId" />
-            // }
+            ,{
+                path: `/userView/:id`,
+                id: 'userView',
+                element: <UserView />
+            },{
+                path: '/carView/:id',
+                id: 'carView',
+                element: <CarView />
+            }
         ]);
     }
 }

@@ -1,37 +1,62 @@
-// import { useEffect, useState } from 'react';
-// import { UserServices } from "../services/UserServices";
+import { useEffect, useState } from 'react';
+import { useParams } from "react-router-dom";
+import { SearchResults } from '../components/general/SearchResults';
+import { MostViewed } from '../components/general/MostViewed';
+import { Footer } from '../components/general/Footer';
+import { UserServices } from '../services/UserServices';
+import { Header } from '../components/general/Header';
 
-// interface UserViewProps {
-//     _id: string;
-// }
  
-// interface User {
-//     _id: string;
-//     name: string;
-//     email: string;
-//     file: string;
-// }
+interface User {
+    id: string;
+    name: string;
+    email: string;
+    avatar: string;
+}
 
-// export const UserView: React.FC<UserViewProps> = ({ _id }) => {
-//     const [user, setUser] = useState<User | undefined>(undefined);
+export const UserView = () => {
 
-//     useEffect(() => {
-//         const userServices = new UserServices();
-//         const getUser = async () => {
-//             const response = await userServices.find(_id);
-//             setUser(response.data);
-//         };
+    const routeParams = useParams<{ id: string }>();
+    const userId = routeParams.id ?? '';
+    console.log(userId)
+    const [user, setUser] = useState<User>({
+        id: '',
+        name: '',
+        email: '',
+        avatar: ''
+    });
 
-//         getUser();
-//     }, [_id]);
+    const userServices = new UserServices();
 
-//     if (!user) {
-//         return <div>Carregando...</div>;
-//     }
+    useEffect(() => {
+        const getUser = async () => {
+            const response = await userServices.find(userId);
+            // console.log(userId)
+            setUser(response.data);
+        
+        };
 
-//     return (
-//         <div>
-//             <p>{user.name}</p>
-//         </div>
-//     );
-// };
+        getUser();
+    }, []);
+
+    if (!user) {
+        return <div>Carregando...</div>;
+    }
+
+    return (
+        <>
+            <Header />
+            <h1>{user.name}</h1>
+            {/* <FiltersMenu onUpdateResults={handleSearchComplete} setResults={setResults} /> */}
+            <div className='main-area'>
+                <div className='upper-main'>
+                {/* <SearchCar onSearchComplete={handleSearchComplete} /> */}
+                    <MostViewed /> 
+                </div> 
+                <SearchResults results={user} /> 
+            </div> 
+            <Footer /> 
+        </>
+        
+        )
+};

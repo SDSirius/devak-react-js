@@ -9,9 +9,18 @@ import { CarServices } from '../services/CarServices';
 import { MostViewed } from '../components/general/MostViewed';
 
 export const Home = () => {
+
+    console.log("está na home")
     const carServices = new CarServices();
     const [allCars, setAllCars] = useState([]);
     const [searchResults, setSearchResults] = useState([]);
+    const [results, setResults ] = useState([]);
+
+
+
+    const handleSearchComplete = (results:any) => {
+        setSearchResults(results);
+    };
 
     useEffect(() => {
         const fetchAllCars = async () => {
@@ -26,27 +35,19 @@ export const Home = () => {
         if (searchResults.length === 0) {
             fetchAllCars();
         }
-    }, [searchResults]);
-
-
-    const handleSearchComplete = (results:any) => {
-        setSearchResults(results);
-    };
-
-
+    }, []);
 
     return (
         <SearchProvider>
             <Header />
-            <FiltersMenu onUpdateResults={handleSearchComplete} />
+            <FiltersMenu onUpdateResults={handleSearchComplete} setResults={setResults} />
             <div className='main-area'>
                 <div className='upper-main'>
                     <SearchCar onSearchComplete={handleSearchComplete} />
                     <MostViewed />
                 </div>
-                <SearchResults results={searchResults.length > 0 ? searchResults : allCars.slice(0, 10)} />
+                <SearchResults results={searchResults.length > 0 ? searchResults : allCars.slice(0, 10) || results} />
             </div>
-            {/* Renderiza searchResults se houver, caso contrário, renderiza os 10 primeiros carros */}
             <Footer />
         </SearchProvider>
     );

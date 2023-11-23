@@ -1,6 +1,5 @@
 import { Filters } from "../general/Filters";
-
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 type FilterAttributes = "name" | "brand" | "yearModel" | "value" | "kilometers" | "color";
 
@@ -11,9 +10,12 @@ type TradFilterAttributes = {
 
 interface FiltersMenuProps {
     onUpdateResults: (newResults: any[]) => void; // Define a propriedade onUpdateResults
+    setResults: (newResults: never[]) => void;
 }
 
-export const FiltersMenu: React.FC<FiltersMenuProps> = () => {
+export const FiltersMenu: React.FC<FiltersMenuProps> = ({setResults}) => {
+
+    const [isVisible, setIsVisible] = useState(false);
 
     const filterAtributes: FilterAttributes[] = ["name", "brand", "yearModel", "value", "kilometers", "color"];
 
@@ -32,24 +34,31 @@ export const FiltersMenu: React.FC<FiltersMenuProps> = () => {
         return 
     };
 
+    const hideMenu = () => {
+        setIsVisible((prev) => !prev);
+    }
+
     useEffect(() => {
         filterAtributes.forEach((filter) => teste(filter));
         
     }, []);
 
     return (
-        <div className="container-principal">
-            <div className="container-filter">
-                {filterAtributes.map((filter) => (
-                    <div key={filter}>
-                        <ul className="filtros">
-                        {tradFilterAtributes[filter]}
-                            <Filters filter={filter} key={filter}  />
-                        </ul>
-                    </div>
-                ))}
+        <>
+            <button className="toggle-menu" onClick={hideMenu}>Abre/Fecha Menu</button>
+            <div className={`container-principal ${isVisible ? "visible" : "hidden"}`}>
+                <div className="container-filter">
+                    {filterAtributes.map((filter) => (
+                        <div className="filtros" key={filter}>
+                            <ul className="filter-name">
+                            {tradFilterAtributes[filter]}
+                                <Filters filter={filter} key={filter} setResults={setResults} />
+                            </ul>
+                        </div>
+                    ))}
+                </div>
             </div>
-        </div>
+        </>
     );
 };
 

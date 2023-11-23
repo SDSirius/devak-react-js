@@ -42,7 +42,7 @@ export const MostViewed = () => {
             return filteredCars
                 .sort((a, b) => b.views - a.views)
                 .map((result) => (
-                    <div className='container-most-views' key={result._id}>
+                    <div className='most-viewed-cars' key={result._id}>
                         <h1>R$ {result.value}</h1>
                     </div>
                 ));
@@ -53,5 +53,5 @@ export const MostViewed = () => {
         return null;
     };
 
-    return <div>{renderCars()}</div>;
+    return <div className='container-most-viwes'>{renderCars()}</div>;
 };

@@ -1,7 +1,7 @@
 import homeIcon from '../../assets/images/home.svg';
 import homeActiveIcon from '../../assets/images/home_active.svg';
 import linkIcon from '../../assets/images/link.svg';
-import linkActiveIcon from '../../assets/images/link_active.svg';
+import sellIcon from '../../assets/images/Icone-cifrao-removebg-preview.png';
 import avatarIcon from '../../assets/images/avatar.svg';
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -29,8 +29,8 @@ export const Navigation = ( ) => {
             }
             return homeIcon;
           case 'room':
-            if (location.pathname === '/room' || location.pathname === '/link') {
-              return linkActiveIcon;
+            if (location.pathname === '/' ) {
+              return sellIcon;
             }
             return linkIcon;
           default:
@@ -58,19 +58,23 @@ export const Navigation = ( ) => {
             <ul>
                 <li>
                     <img src={getIcon('home')} alt='Home' className='iconNav' onClick={() => navigate('/')}/>
+                    <p>Comprar</p>
                 </li>
                 {mobile ? <li>
-                    <img src={getIcon('room')} alt='Entrar na reunião' className='iconNav' onClick={() => navigate('/link')}/>
+                    <img src={getIcon('vender')} alt='Vender Carro' className='iconNav' onClick={() => navigate('/AddCar')}/>
+                    <p>Vender</p>
                 </li> 
                 :
                 <li className="disabled">
                     <img src={getIcon('room')} alt='Entrar na reunião' className='iconNav' />
+                    <p>Vender</p>
                 </li> }
                 
                 <li>
                     <div className={'avatar mini ' + getSelectedClass()} >
                         <img src={avatarImage()} alt='Editar usuario' onClick={navigateToUserOrLogin} />
                     </div>
+                    <p>Meu Perfil</p>
                 </li>
             </ul>
 

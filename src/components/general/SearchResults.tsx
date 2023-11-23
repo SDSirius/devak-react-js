@@ -4,15 +4,15 @@ import { useNavigate } from "react-router-dom";
 
 
 interface User {
-    _id: string;
+    id: string;
     name: string;
     email: string;
-    file: string;
+    avatar: string;
 }
 
 interface Car {
     views:number;
-    _id: number;
+    _id: string;
     user:string;
     value: number;
     file: string;
@@ -48,12 +48,13 @@ export const SearchResults: React.FC<SearchResultsProps> = ({ results }) => {
         try {
             const response = await carServices.findByUser(id);
             const data = response.data;
+            console.log(data)
 
             if (Array.isArray(data) && data.length > 1) {
                 const userCarsElements = data
                     .sort((a, b) => b.views - a.views)
                     .map((userCar) => (
-                        <div className="user-car" key={userCar._id}>
+                        <div className="all-user-cars" key={userCar._id} >
                             <h1>{userCar.name}</h1>
                             <img src={userCar.file} alt={userCar.name} />
                             <p>R$ {userCar.value}</p>
@@ -63,7 +64,7 @@ export const SearchResults: React.FC<SearchResultsProps> = ({ results }) => {
                 setUserCars(userCarsElements);
             } else if (data && !Array.isArray(data)) {
                 const userCarElement = (
-                    <div className="all-user-cars" key={data._id}>
+                    <div className="user-car" key={data._id}>
                         <h1>{data.name}</h1>
                         <img src={data.file} alt={data.name} />
                         <p>R$ {data.value}</p>
@@ -82,12 +83,8 @@ export const SearchResults: React.FC<SearchResultsProps> = ({ results }) => {
     useEffect(() => {
         if ((results as User).email) {
             const user = results as User;
-            getUserCars(user._id);
+            getUserCars(user.id);
         }
-        // } else if ((results as Car).user) {
-        //     const car = results as Car;
-        //     getUserCars(car.);
-        // }
     }, [results]);
 
 
@@ -97,7 +94,7 @@ export const SearchResults: React.FC<SearchResultsProps> = ({ results }) => {
                 {results
                     .sort((a, b) => b.value - a.value)
                     .map((result) => (
-                    <div key={result._id} className='cars-object' onClick={() => goToCar(result.user)} >
+                    <div key={result._id} className='cars-object' onClick={() => goToCar(result._id)} >
                         <h1 >R$ {result.value}</h1>
                         <div className="container-cars-object" >
                             <div className='cars-id'>
@@ -117,13 +114,13 @@ export const SearchResults: React.FC<SearchResultsProps> = ({ results }) => {
         );
     } else if ((results as User).email) {
         const user = results as User;
-        console.log(user);
+        console.log("propriedades do usuário => ",user);
         return (
             <div className='user-object' >
                 <h1>R$ {user.name}</h1>
                 <div className="container-user-object" >
                     <div className='user-id'>
-                        <img className='exibit-user' src={user.file} alt={`${user.name}`} />
+                        <img className='exibit-user' src={user.avatar} alt={`${user.name}`} />
                         <p> ${user.name}</p>
                     </div>
                     <div className="user-specs">
@@ -142,13 +139,13 @@ export const SearchResults: React.FC<SearchResultsProps> = ({ results }) => {
                     <div className='car-id'>
                         <img className='exibit-car' src={car.file} alt={`${car.brand} ${car.name}`} />
                         <p> {car.brand} {car.name}</p>
-                        <p onClick={() => goToUser(car.user)}> {car.user}</p>
                     </div>
                     <div className="car-specs">
                         <p>Cor: {car.color}</p>
                         <p>Ano / Modelo: {car.yearModel}</p>
                         <p>Quilometros: {car.kilometers}</p>
                         <p>Placa: {car.plate}</p>
+                        <p onClick={() => goToUser(car.user)}> Veja o Perfil do Vendedor!</p>
                     </div>
                 </div>
             </div>

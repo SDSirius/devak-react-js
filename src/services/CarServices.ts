@@ -4,6 +4,11 @@ export class CarServices extends HttpApiServices{
     async find(term: string) {
         return await this.get(`/cars/${term}`);
     }
+    
+    async findById(id: string) {
+        return await this.get(`/cars/id/${id}`);
+    }
+
 
     async findByUser(userId:string){
         return await this.get(`/cars/user/${userId}`)
