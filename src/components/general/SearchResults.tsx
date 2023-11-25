@@ -47,14 +47,14 @@ export const SearchResults: React.FC<SearchResultsProps> = ({ results }) => {
     const getUserCars = async (id: string) => {
         try {
             const response = await carServices.findByUser(id);
-            const data = response.data;
-            console.log(data)
+            const data:Car[] = response.data;
+            console.log("userCars",data)
 
-            if (Array.isArray(data) && data.length > 1) {
+            if (data && data.length > 0) {
                 const userCarsElements = data
                     .sort((a, b) => b.views - a.views)
                     .map((userCar) => (
-                        <div className="all-user-cars" key={userCar._id} >
+                        <div key={userCar._id} className='cars-object' onClick={() => goToCar(userCar._id)} >
                             <h1>{userCar.name}</h1>
                             <img src={userCar.file} alt={userCar.name} />
                             <p>R$ {userCar.value}</p>
@@ -62,16 +62,6 @@ export const SearchResults: React.FC<SearchResultsProps> = ({ results }) => {
                     ));
 
                 setUserCars(userCarsElements);
-            } else if (data && !Array.isArray(data)) {
-                const userCarElement = (
-                    <div className="user-car" key={data._id}>
-                        <h1>{data.name}</h1>
-                        <img src={data.file} alt={data.name} />
-                        <p>R$ {data.value}</p>
-                    </div>
-                );
-
-                setUserCars(userCarElement);
             } else {
                 setUserCars(<p>Nenhum carro encontrado para este usuário.</p>);
             }
@@ -95,15 +85,15 @@ export const SearchResults: React.FC<SearchResultsProps> = ({ results }) => {
                     .sort((a, b) => b.value - a.value)
                     .map((result) => (
                     <div key={result._id} className='cars-object' onClick={() => goToCar(result._id)} >
-                        <h1 >R$ {result.value}</h1>
+                        <p >R$ {result.value}</p>
                         <div className="container-cars-object" >
                             <div className='cars-id'>
                                 <img className='exibit-cars' src={result.file} alt={`${result.brand} ${result.name}`} />
-                                <p> {result.brand} {result.name}</p>
-                            </div>
-                            <div className="cars-specs">
                                 <p>Cor: {result.color}</p>
                                 <p>Ano / Modelo: {result.yearModel}</p>
+                            </div>
+                            <div className="cars-specs">
+                                <p> {result.brand} {result.name}</p>
                                 <p>Quilometros: {result.kilometers}</p>
                                 <p>Placa: {result.plate}</p>
                             </div>
@@ -121,7 +111,7 @@ export const SearchResults: React.FC<SearchResultsProps> = ({ results }) => {
                 <div className="container-user-object" >
                     <div className='user-id'>
                         <img className='exibit-user' src={user.avatar} alt={`${user.name}`} />
-                        <p> ${user.name}</p>
+                        <p> {user.name}</p>
                     </div>
                     <div className="user-specs">
                         {userCars}

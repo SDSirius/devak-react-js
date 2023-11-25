@@ -43,7 +43,8 @@ export const MostViewed = () => {
                 .sort((a, b) => b.views - a.views)
                 .map((result) => (
                     <div className='most-viewed-cars' key={result._id}>
-                        <h1>R$ {result.value}</h1>
+                        <img src={result.file} alt={result.name} />
+                        <p>{result.name},{result.yearModel}</p>
                     </div>
                 ));
         } else if (car && !Array.isArray(car)) {
@@ -53,5 +54,5 @@ export const MostViewed = () => {
         return null;
     };
 
-    return <div className='container-most-viwes'>{renderCars()}</div>;
+    return <div className='container-most-views'>{renderCars()}</div>;
 };

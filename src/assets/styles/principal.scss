@@ -1,15 +1,8 @@
 @import './configs.scss';
 
-.toggle-menu{
-    margin-top: 92%;
-    max-width: 20%;
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
-    // position: fixed;
-}
+
 .container-principal {
-    width: 100%;
+    width: 20%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -34,6 +27,15 @@
     }
 
 }
+.toggle-menu{
+    position:relative;
+    top:167%;
+    left:-200px;
+    bottom:0px;
+    z-index:999;
+    right:0px;
+   }
+   
 @media screen and (min-width : $desktopBreakpoint) {
     .toggle-menu{
         display: none;

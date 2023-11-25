@@ -1,17 +1,18 @@
 import { useEffect, useState } from "react";
 import { CarServices } from "../../services/CarServices";
-import { useSearchContext } from "./SearchContext";
+// import { ResultView } from "../../views/ResultView";
+
 
 type FiltersProps = {
     filter: string;
-    setResults:(newResults: never[]) => void;
+    onSearchComplete: (results: any[]) => void; 
 };
 
-export const Filters: React.FC<FiltersProps> = ({ filter, setResults }) => {
+export const Filters: React.FC<FiltersProps> = ({ filter, onSearchComplete }) => {
 
     const [data, setData] = useState<any[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
-    const { searchResults, updateSearchResults } = useSearchContext();
+    const [results, setResults] = useState([]);
     const carService = new CarServices();
     
     const goToFilter = async (filter:string, item:string) => {
@@ -20,7 +21,8 @@ export const Filters: React.FC<FiltersProps> = ({ filter, setResults }) => {
             console.log(queryParams)
             const response = await carService.getFilteredCars(queryParams);
             console.log( response.data)
-            updateSearchResults(response.data);
+            onSearchComplete(response.data);
+            
         } catch (error) {
             console.error("Erro ao buscar filtro:", error);
         }
@@ -32,6 +34,8 @@ export const Filters: React.FC<FiltersProps> = ({ filter, setResults }) => {
                 const response = await carService.filters(filter);
                 setData(response.data);
                 console.log("results do searchResults no filter", data);
+                
+
             } catch (error) {
                 console.error("erro ao buscar filtro:",error);
             } finally {
@@ -40,7 +44,7 @@ export const Filters: React.FC<FiltersProps> = ({ filter, setResults }) => {
         };
 
         fetchData();
-    }, [searchResults]);
+    }, []);
 
     return (
         <div>

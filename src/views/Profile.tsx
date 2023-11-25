@@ -1,17 +1,28 @@
 import { ActionHeader } from "../components/general/ActionHeader";
-// import { AvatarInput } from "../components/general/AvatarInput";
 import { Footer } from "../components/general/Footer";
 import { Header } from "../components/general/Header";
-import { useState, useContext } from 'react';
-import clearIcon from '../assets/images/clear.svg';
-import logoutIcon from '../assets/images/logout.svg';
+import { useState, useContext, useEffect } from 'react';
 import { LoginServices } from "../services/LoginServices";
 import { useNavigate } from "react-router-dom";
 import { AuthorizeContext } from "../App";
 import { UserServices } from "../services/UserServices";
 import { UploadImage } from "../components/general/UploadImage";
-import imgUser from '../assets/images/user.svg'
 import { CarServices } from "../services/CarServices";
+
+import clearIcon from '../assets/images/clear.svg';
+import logoutIcon from '../assets/images/logout.svg';
+import imgUser from '../assets/images/user.svg'
+import imgEdit from '../assets/images/edit.svg'
+import { DeleteSoldCar } from "../components/general/DelSoldCar";
+
+
+interface Car {
+    _id: string;
+    file: string;
+    name: string;
+    yearModel: string;
+    sold?: string;
+}
 
 const loginServices = new LoginServices();
 const userServices = new UserServices();
@@ -20,13 +31,21 @@ const carServices = new CarServices();
 export const Profile = () => {
 
     const navigate = useNavigate();
+
+    const [cars, setCars] = useState([]);
     const { setToken } = useContext(AuthorizeContext);
     const [name, setName]=useState(localStorage.getItem('name') || '');
     const [image, setImage] = useState<{ preview: string; file: File | null }>({ preview: '', file: null });
     const  myId  = localStorage.getItem('id' || '');
     const mobile = window.innerWidth <= 992;
     
+    const editCar = (_id:string) => {
+        navigate(`/UpdateCar/${_id}`);
+    }
 
+    const goToCar = (_id:string) => {
+        navigate(`/carView/${_id}`);
+    }
     
     const finishUpdate = async () =>{
         try {
@@ -69,15 +88,46 @@ export const Profile = () => {
         loginServices.logout(setToken);
         navigate('');
     }
-    
 
-    const myCars = async () => {
-        if (!myId || myId.length < 1){
-            return
+    const renderList = ( cars: Car[] ) => {
+        if (cars) {
+            return (
+                cars.map(car => (
+                    <div className="car-name" key={car._id} >
+                        <img onClick={() => goToCar(car._id)} className="imagem-mini" src={car.file}/> 
+                        <p onClick={() => goToCar(car._id)}>{car.name}, {car.yearModel}</p>
+                        <img className="edit-car" src={imgEdit} onClick={() => editCar(car._id)}/>
+                        <DeleteSoldCar _id={car._id} />
+                    </div>
+
+                ))
+            )
         }
-        const result = await carServices.findByUser(myId);
-        return result.data;
     }
+    useEffect(() => {
+        const myCars = async () => {
+            if (!myId || myId.length < 1){
+                return null;
+            }
+
+            try {
+                const result = await carServices.findByUser(myId);
+                console.log(result.data)
+                return result.data;
+            } catch (error) {
+                console.error("Erro ao buscar carros:", error);
+                return null;
+            }
+        };
+
+        const getMyCars = async () => {
+            const response  = await myCars();
+            setCars(response)
+
+        }
+        
+        getMyCars();
+    }, []);
 
 
     return (
@@ -94,7 +144,8 @@ export const Profile = () => {
                     </div>
                 </div>
                 <div className="container-my-cars">
-                     <span onClick={() => myCars}>Meus Veículos</span>
+                     <span >Meus Veículos</span>
+                     <div>{renderList(cars)}</div>
                 </div>
                 <div className="logout">
                     <div onClick={logout}>

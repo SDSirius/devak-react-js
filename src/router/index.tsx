@@ -6,6 +6,7 @@ import { Profile } from "../views/Profile";
 import { AddCar } from "../views/AddCar";
 import { CarView } from "../views/CarView";
 import { UserView } from "../views/UserView";
+import { UpdateCar } from "../views/UpdateCar";
 
 
 export const getRouter = (token:string) => {
@@ -27,9 +28,11 @@ export const getRouter = (token:string) => {
                 element: <Register />
             },{
                 path: '/userView/:id',
+                id: 'userView',
                 element: <UserView />
             },{
                 path: '/carView/:id',
+                id: 'carView',
                 element: <CarView />
             }
         ]);
@@ -58,6 +61,10 @@ export const getRouter = (token:string) => {
                 path: '/carView/:id',
                 id: 'carView',
                 element: <CarView />
+            },{
+                path: '/UpdateCar/:id',
+                id: 'UpdateCar',
+                element: <UpdateCar />
             }
         ]);
     }

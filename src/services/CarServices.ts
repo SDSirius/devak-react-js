@@ -9,7 +9,6 @@ export class CarServices extends HttpApiServices{
         return await this.get(`/cars/id/${id}`);
     }
 
-
     async findByUser(userId:string){
         return await this.get(`/cars/user/${userId}`)
     }
@@ -28,4 +27,12 @@ export class CarServices extends HttpApiServices{
         await this.post(`/cars/upload`,formData);
     }
     
+    async updateCar (id:string, formData: FormData){
+        console.log({formData},formData)
+        await this.put(`/cars/${id}`,formData);
+    }
+
+    async deleteCar(id: string) {
+        await this.detele(`/cars/${id}`);
+    }
 }

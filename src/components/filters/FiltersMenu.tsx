@@ -9,13 +9,13 @@ type TradFilterAttributes = {
 };
 
 interface FiltersMenuProps {
-    onUpdateResults: (newResults: any[]) => void; // Define a propriedade onUpdateResults
-    setResults: (newResults: never[]) => void;
+    onSearchComplete: (results: any[]) => void; 
 }
 
-export const FiltersMenu: React.FC<FiltersMenuProps> = ({setResults}) => {
+export const FiltersMenu: React.FC<FiltersMenuProps> = ({ onSearchComplete }) => {
 
     const [isVisible, setIsVisible] = useState(false);
+    let isOpened = "fechar";
 
     const filterAtributes: FilterAttributes[] = ["name", "brand", "yearModel", "value", "kilometers", "color"];
 
@@ -35,7 +35,13 @@ export const FiltersMenu: React.FC<FiltersMenuProps> = ({setResults}) => {
     };
 
     const hideMenu = () => {
+        if (isOpened === "fechar"){
+            isOpened= "abrir"
+        } else if (isOpened === "abrir"){
+            isOpened= "fechar"
+        }
         setIsVisible((prev) => !prev);
+
     }
 
     useEffect(() => {
@@ -45,19 +51,19 @@ export const FiltersMenu: React.FC<FiltersMenuProps> = ({setResults}) => {
 
     return (
         <>
-            <button className="toggle-menu" onClick={hideMenu}>Abre/Fecha Menu</button>
             <div className={`container-principal ${isVisible ? "visible" : "hidden"}`}>
                 <div className="container-filter">
                     {filterAtributes.map((filter) => (
                         <div className="filtros" key={filter}>
                             <ul className="filter-name">
                             {tradFilterAtributes[filter]}
-                                <Filters filter={filter} key={filter} setResults={setResults} />
+                                <Filters filter={filter} key={filter} onSearchComplete={onSearchComplete} />
                             </ul>
                         </div>
                     ))}
                 </div>
             </div>
+            <button className="toggle-menu" onClick={hideMenu}>{isOpened} Menu</button>
         </>
     );
 };

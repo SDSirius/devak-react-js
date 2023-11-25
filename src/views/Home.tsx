@@ -23,7 +23,7 @@ export const Home = () => {
     };
 
     useEffect(() => {
-        const fetchAllCars = async () => {
+        const getAllCars = async () => {
             try {
                 const response = await carServices.find('');
                 setAllCars(response.data);
@@ -33,14 +33,14 @@ export const Home = () => {
         };
     
         if (searchResults.length === 0) {
-            fetchAllCars();
+            getAllCars();
         }
     }, []);
 
     return (
         <SearchProvider>
             <Header />
-            <FiltersMenu onUpdateResults={handleSearchComplete} setResults={setResults} />
+            <FiltersMenu onSearchComplete={handleSearchComplete}  />
             <div className='main-area'>
                 <div className='upper-main'>
                     <SearchCar onSearchComplete={handleSearchComplete} />
@@ -52,3 +52,5 @@ export const Home = () => {
         </SearchProvider>
     );
 };
+
+//setResults={setResults}
