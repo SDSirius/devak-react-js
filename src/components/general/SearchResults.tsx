@@ -46,30 +46,32 @@ export const SearchResults: React.FC<SearchResultsProps> = ({ results }) => {
 
     const getUserCars = async (id: string) => {
         try {
-            const response = await carServices.findByUser(id);
-            const data:Car[] = response.data;
-            console.log("userCars",data)
-
-            if (data && data.length > 0) {
-                const userCarsElements = data
-                    .sort((a, b) => b.views - a.views)
-                    .map((userCar) => (
-                        <div key={userCar._id} className='cars-object' onClick={() => goToCar(userCar._id)} >
-                            <h1>{userCar.name}</h1>
-                            <img src={userCar.file} alt={userCar.name} />
-                            <p>R$ {userCar.value}</p>
-                        </div>
-                    ));
-
-                setUserCars(userCarsElements);
-            } else {
-                setUserCars(<p>Nenhum carro encontrado para este usuário.</p>);
-            }
+          const response = await carServices.findByUser(id);
+          const data: Car[] = response.data;
+      
+          if (data && data.length > 0) {
+            const userCarsElements = data
+              .sort((a, b) => b.views - a.views)
+              .map((userCar) => (
+                <div key={userCar._id} className='cars-object' onClick={() => !userCar.sold ? goToCar(userCar._id) : alert("Carro já vendido")}>
+                  <h1>{userCar.name} </h1>
+                  <img src={userCar.file} alt={userCar.name} />
+                  <p>
+                    R$ {userCar.value} {userCar.sold ? ' Vendido' : 'Disponível'}
+                  </p>
+                </div>
+              ));
+      
+            setUserCars(userCarsElements);
+          } else {
+            setUserCars(<p>Nenhum carro encontrado para este usuário.</p>);
+          }
         } catch (error) {
-            console.error("Erro ao buscar dados do usuário:", error);
-            setUserCars(<p>Ocorreu um erro ao buscar dados do usuário.</p>);
+          console.error("Erro ao buscar dados do usuário:", error);
+          setUserCars(<p>Ocorreu um erro ao buscar dados do usuário.</p>);
         }
     };
+      
     useEffect(() => {
         if ((results as User).email) {
             const user = results as User;
@@ -107,11 +109,10 @@ export const SearchResults: React.FC<SearchResultsProps> = ({ results }) => {
         console.log("propriedades do usuário => ",user);
         return (
             <div className='user-object' >
-                <h1>R$ {user.name}</h1>
+                <h1>{user.name}</h1>
                 <div className="container-user-object" >
                     <div className='user-id'>
                         <img className='exibit-user' src={user.avatar} alt={`${user.name}`} />
-                        <p> {user.name}</p>
                     </div>
                     <div className="user-specs">
                         {userCars}

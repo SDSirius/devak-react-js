@@ -1,0 +1,90 @@
+@import './configs.scss';
+
+.main-area {
+    display: flex;
+    position: absolute;
+    top: 16%;
+    left: 1%;
+    bottom: 12%;
+    background-image: url('../images/background_car.png');
+    background-size: 110% contain; 
+    background-attachment: fixed;
+    height: calc(100% - 28%); 
+    overflow-y: auto; 
+  
+    .user-object {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      top: 0;
+      height: 100%;
+      border: 1px solid $primaryColor5;
+      border-radius: 25px;
+      padding: 2%;
+      align-items: center;
+      justify-content: center;
+  
+        .container-user-object {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 1%;
+    
+            .user-id {
+                display: flex;
+                justify-content: center;
+        
+                img {
+                    width: 45%;
+                    border: 2px solid $primaryColorWithOpacity;
+                    border-radius: 20px;
+                }
+            }
+    
+            .user-specs {
+                margin-top: 4%;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-evenly;
+    
+            .cars-object {
+                border-radius: 5px;
+                justify-content: center;
+                border: 1px solid $greyColor3;
+                padding: 0 2%;
+                width: 28%;
+                height: 33%;
+    
+                &:hover {
+                    cursor: pointer; 
+                }
+    
+                &:hover::after {
+                    content: url('../images/not_allowed.png'); 
+                    position: absolute; 
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    max-width: 100%;
+                    max-height: 100%;
+                    width: 25%;
+                    height: 25%;
+                    z-index: 1; 
+                }
+    
+                h1 {
+                    text-align: center;
+                }
+    
+                img {
+                    width: 100%;
+                }
+                p {
+                    text-align: center;
+                    font-size: 16px;
+                }
+            }
+            }
+        }
+    }
+  }
+  

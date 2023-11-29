@@ -1,11 +1,13 @@
 @import './configs.scss';
 
 .container-public {
-    width: 85%;
+    width: 98%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding: 1%;
+    
 
     .logo {
         margin-bottom: 60px;

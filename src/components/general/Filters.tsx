@@ -47,7 +47,7 @@ export const Filters: React.FC<FiltersProps> = ({ filter, onSearchComplete }) =>
     }, []);
 
     return (
-        <div>
+        <>
             {loading ? (
                 <p>Loading...</p>
             ) : (
@@ -62,6 +62,6 @@ export const Filters: React.FC<FiltersProps> = ({ filter, onSearchComplete }) =>
                 </li>
 
             )}
-        </div>
+        </>
     );
 };

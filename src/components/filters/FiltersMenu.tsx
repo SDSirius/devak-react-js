@@ -15,16 +15,16 @@ interface FiltersMenuProps {
 export const FiltersMenu: React.FC<FiltersMenuProps> = ({ onSearchComplete }) => {
 
     const [isVisible, setIsVisible] = useState(false);
-    let isOpened = "fechar";
+    const [openedText, setOpenedText] = useState(false);
 
     const filterAtributes: FilterAttributes[] = ["name", "brand", "yearModel", "value", "kilometers", "color"];
 
     const tradFilterAtributes: TradFilterAttributes = {
-        name: "Nome",
-        brand: "Marca",
-        yearModel: "Ano/Modelo",
-        value: "Valor",
-        kilometers: "Quilometragem",
+        name: "Nomes",
+        brand: "Marcas",
+        yearModel: "Anos/Modelos",
+        value: "Valores",
+        kilometers: "Quilometragens",
         color: "Cores",
     };
 
@@ -35,13 +35,8 @@ export const FiltersMenu: React.FC<FiltersMenuProps> = ({ onSearchComplete }) =>
     };
 
     const hideMenu = () => {
-        if (isOpened === "fechar"){
-            isOpened= "abrir"
-        } else if (isOpened === "abrir"){
-            isOpened= "fechar"
-        }
+        setOpenedText((prev) => !prev)
         setIsVisible((prev) => !prev);
-
     }
 
     useEffect(() => {
@@ -51,19 +46,19 @@ export const FiltersMenu: React.FC<FiltersMenuProps> = ({ onSearchComplete }) =>
 
     return (
         <>
-            <div className={`container-principal ${isVisible ? "visible" : "hidden"}`}>
-                <div className="container-filter">
-                    {filterAtributes.map((filter) => (
-                        <div className="filtros" key={filter}>
-                            <ul className="filter-name">
-                            {tradFilterAtributes[filter]}
-                                <Filters filter={filter} key={filter} onSearchComplete={onSearchComplete} />
-                            </ul>
-                        </div>
-                    ))}
-                </div>
+        <div className={`container-principal ${isVisible ? "visible" : "hidden"}`}>
+            <div className="container-filter">
+                {filterAtributes.map((filter) => (
+                    <div className="filtros" key={filter}>
+                        <ul className="filter-name">
+                        {tradFilterAtributes[filter]}
+                            <Filters filter={filter} key={filter} onSearchComplete={onSearchComplete} />
+                        </ul>
+                    </div>
+                ))}
             </div>
-            <button className="toggle-menu" onClick={hideMenu}>{isOpened} Menu</button>
+        </div>
+        <button className="toggle-menu" onClick={hideMenu}>{openedText? "Fechar " : "Abrir "}Menu</button>
         </>
     );
 };

@@ -46,11 +46,10 @@ export const Home = () => {
                     <SearchCar onSearchComplete={handleSearchComplete} />
                     <MostViewed />
                 </div>
-                <SearchResults results={searchResults.length > 0 ? searchResults : allCars.slice(0, 10) || results} />
+                <SearchResults results={searchResults.length > 0 ? searchResults : allCars.slice(0, 10) || results} /> 
             </div>
             <Footer />
         </SearchProvider>
     );
 };
 
-//setResults={setResults}

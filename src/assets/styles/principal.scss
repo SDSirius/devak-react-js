@@ -1,23 +1,78 @@
 @import './configs.scss';
 
 
+.toggle-menu{
+    display: flex;
+    position: fixed;
+    left: 0;
+    height: 5%;
+    bottom: 10%;
+    width: 40%;
+    align-items: center;
+    justify-content:center;
+
+    @media screen and (min-width : $desktopBreakpoint) {
+        display: none;
+    }
+        
+}
+
 .container-principal {
-    width: 20%;
+    position: fixed;
+    left: 0;
+    top: 15.2%;
+    bottom: 15%;
+    // align-content: flex-start;
+    overflow-y: auto;
+    width: 40%;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
     justify-content: flex-start;
-    flex: 1;
-    
+    align-items: flex-start;
+    background-color: $primaryColor5;
+    z-index: 100;
+    border: 2px solid $primaryColorWithOpacity;
+    border-radius: 25px;
+
     .container-filter {
+        font-weight: normal;
         width: 100%;
-        display: flex;
-        flex-direction: column;
-        flex: 1;
+        height: 100%;
+        padding: 0.5%;
+        // display: flex;
+        // flex: 1;
         align-items: flex-start;
-        justify-content: flex-start;
-        background-color: white;
+        justify-content: space-between;
+        background-color: rgba(255, 255, 255, 0.15);
+
+        .filtros {
+             
+            .filter-name {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                font-weight: bolder;
+                font-size: 20px;
+
+                li {   
+                    flex-direction: row;
+                    width: 100%;
+                    border-radius: 5%;
+                    justify-content: flex-start;
+                    font-weight: normal;
+                    font-size: 14px;
+                    
+                    p {
+                        text-decoration: underline;
+                        text-decoration-color: $greyColor1;
+                        
+                        width: 100%;
+                    }
+                }
+            }
+        }
     }
+
     &.visible {
         display: flex;
     }
@@ -26,59 +81,98 @@
         display: none;
     }
 
-}
-.toggle-menu{
-    position:relative;
-    top:167%;
-    left:-200px;
-    bottom:0px;
-    z-index:999;
-    right:0px;
-   }
-   
-@media screen and (min-width : $desktopBreakpoint) {
-    .toggle-menu{
-        display: none;
-    }
-    .container-principal {
-        display: flex;
-        position: fixed;
-        left: 0;
-        top: 100px;
-        width: 20%;
-        height: 100%;
-        align-items: flex-start;
-        justify-content: flex-start;
-
-        &.visible {
-            display: flex;
-        }
-    
+    @media screen and (min-width : $desktopBreakpoint) {
         &.hidden {
             display: flex;
         }
-    
+        top: 15.3%;
+        bottom: 0.3%;
+        width: 25%;
+
         .container-filter {
-
-            .filtros {
-
-                .filter-name{
-                    font-size: 26px;
-
-                    div{ 
-
-                        li{
-                            font-size: 16px;
-                            ::marker {
-                                display: none;
-                            }
-                        }
-                    }
-                }
-
-            }
+            height: 98%;
+            border-color: 1px solid black;
         }
 
     }
     
+    
 }
+
+// .container-principal {
+    
+//     .container-filter {
+//         width: 100%;
+//         display: flex;
+//         // flex-direction: column;
+//         flex: 1;
+//         align-items: flex-start;
+//         justify-content: space-between;
+//         background-color: white;
+//     }
+//     &.visible {
+//         display: flex;
+//     }
+
+//     &.hidden {
+//         display: none;
+//     }
+
+// }
+// .toggle-menu{
+//     position:relative;
+//     // top:167%;
+//     // left:-200px;
+//     // bottom:0px;
+//     // z-index:999;
+//     // right:0px;
+//    }
+   
+// @media screen and (min-width : $desktopBreakpoint) {
+
+//     .toggle-menu{
+//         display: none;
+//     }
+    
+//     .container-principal {
+//         display: flex;
+//         position: fixed;
+//         left: 0;
+//         top: 100px;
+//         width: 20%;
+//         height: 100%;
+//         align-items: flex-start;
+//         justify-content: flex-start;
+
+//         &.visible {
+//             display: flex;
+//         }
+    
+//         &.hidden {
+//             display: flex;
+//         }
+    
+//         .container-filter {
+
+//             .filtros {
+
+//                 .filter-name{
+//                     font-size: 26px;
+
+//                     div{ 
+
+//                         li{
+//                             font-size: 16px;
+//                             ::marker {
+//                                 display: none;
+//                             }
+//                         }
+//                     }
+//                 }
+
+//             }
+//         }
+
+//     }
+    
+// }

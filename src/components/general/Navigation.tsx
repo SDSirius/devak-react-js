@@ -12,7 +12,7 @@ export const Navigation = ( ) => {
     const location = useLocation();
     const  id  = localStorage.getItem('id' || '');
     const idExists = id && id.length > 0;
-    const mobile = window.innerWidth <= 992;
+
     
     
     const navigateToUserOrLogin = () => {
@@ -28,7 +28,7 @@ export const Navigation = ( ) => {
               return homeActiveIcon;
             }
             return homeIcon;
-          case 'room':
+          case 'vender':
             if (location.pathname === '/' ) {
               return sellIcon;
             }
@@ -60,21 +60,15 @@ export const Navigation = ( ) => {
                     <img src={getIcon('home')} alt='Home' className='iconNav' onClick={() => navigate('/')}/>
                     <p>Comprar</p>
                 </li>
-                {mobile ? <li>
+                <li>
                     <img src={getIcon('vender')} alt='Vender Carro' className='iconNav' onClick={() => navigate('/AddCar')}/>
                     <p>Vender</p>
                 </li> 
-                :
-                <li className="disabled">
-                    <img src={getIcon('room')} alt='Entrar na reunião' className='iconNav' />
-                    <p>Vender</p>
-                </li> }
-                
                 <li>
                     <div className={'avatar mini ' + getSelectedClass()} >
                         <img src={avatarImage()} alt='Editar usuario' onClick={navigateToUserOrLogin} />
                     </div>
-                    <p>Meu Perfil</p>
+                    <p>{idExists? "Meu Perfil" : "Entrar"}</p>
                 </li>
             </ul>
 
