@@ -48,10 +48,7 @@ export const UpdateCar = () => {
           try {
             const response = await carServices.findById(carId);
             const carDetails = response.data;
-
-            console.log("useEffect carDetails",carDetails)
-    
-            // Preenche os estados com as informações do carro
+            
             setName(carDetails.name);
             setBrand(carDetails.brand);
             setYearModel(carDetails.yearModel);
@@ -61,13 +58,11 @@ export const UpdateCar = () => {
             setPlate(carDetails.plate);
             setImage(carDetails.file);
     
-            // Preenche a imagem do carro se existir
             if (carDetails.file) {
               setImage({ preview: carDetails.file, file: null });
             }
           } catch (error) {
             console.error('Erro ao buscar detalhes do carro:', error);
-            // Lógica de tratamento de erro, se necessário
           }
         };
         fetchCarDetails();
@@ -142,10 +137,10 @@ export const UpdateCar = () => {
     return (
             <SearchProvider>
                 <Header />
-                <div className="container-addcar">
+                <div className="container-update-car">
                     <h1>Errou alguma coisa? Não se preoculpe. Atualize os dados agora!</h1>
                     <UploadImage image={image} imagemPreviewClassName="avatar avatarPreview" imagemPreview={image.preview || picCar} setImage={setImage} />
-                    <div className="container-insert-car">
+                    <div className="container-edit-car">
                         <PublicInput 
                             icon={idCar}
                             alt='Nome'

@@ -6,35 +6,32 @@ import { CarServices } from "../../services/CarServices";
 type FiltersProps = {
     filter: string;
     onSearchComplete: (results: any[]) => void; 
+    hideMenu: () => void;
 };
 
-export const Filters: React.FC<FiltersProps> = ({ filter, onSearchComplete }) => {
-
+export const Filters: React.FC<FiltersProps> = ({ filter, onSearchComplete, hideMenu }) => {
     const [data, setData] = useState<any[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
-    const [results, setResults] = useState([]);
+    // const [results, setResults] = useState([]);
     const carService = new CarServices();
     
     const goToFilter = async (filter:string, item:string) => {
         try {
-            const queryParams = `${filter}=${item}`
-            console.log(queryParams)
+            const queryParams = `${filter}=${item}`;
             const response = await carService.getFilteredCars(queryParams);
-            console.log( response.data)
             onSearchComplete(response.data);
-            
+            hideMenu(); 
         } catch (error) {
             console.error("Erro ao buscar filtro:", error);
         }
-    }
+    };
+    
 
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const response = await carService.filters(filter);
                 setData(response.data);
-                console.log("results do searchResults no filter", data);
-                
 
             } catch (error) {
                 console.error("erro ao buscar filtro:",error);
@@ -51,15 +48,15 @@ export const Filters: React.FC<FiltersProps> = ({ filter, onSearchComplete }) =>
             {loading ? (
                 <p>Loading...</p>
             ) : (
-                <li>
+                <>
                     {data   
                         .sort((a, b) => b - a)
                         .map((item) => (
-                        <p key={item} onClick={() => goToFilter(filter, item)}>
+                        <li key={item} onClick={() => goToFilter(filter, item)}>
                             {item}
-                        </p>
+                        </li>
                     ))}
-                </li>
+                </>
 
             )}
         </>

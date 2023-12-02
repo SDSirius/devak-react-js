@@ -19,6 +19,7 @@ import { DeleteSoldCar } from "../components/general/DelSoldCar";
 interface Car {
     _id: string;
     file: string;
+    brand: string;
     name: string;
     yearModel: string;
     sold?: string;
@@ -32,10 +33,11 @@ export const Profile = () => {
 
     const navigate = useNavigate();
 
+    const myAvatar = localStorage.getItem('avatar' || '')
     const [cars, setCars] = useState([]);
     const { setToken } = useContext(AuthorizeContext);
     const [name, setName]=useState(localStorage.getItem('name') || '');
-    const [image, setImage] = useState<{ preview: string; file: File | null }>({ preview: '', file: null });
+    const [image, setImage] = useState<{ preview: string; file: File | null }>({ preview: myAvatar as string, file: null });
     const  myId  = localStorage.getItem('id' || '');
     const mobile = window.innerWidth <= 992;
     
@@ -71,7 +73,6 @@ export const Profile = () => {
                 
                 localStorage.setItem('avatar', image.preview);
             }
-            console.log(image.preview)
 
             return navigate(-1);
             } catch (e:any) {
@@ -95,7 +96,7 @@ export const Profile = () => {
                 cars.map(car => (
                     <div className="car-name" key={car._id} >
                         <img onClick={() => goToCar(car._id)} className="imagem-mini" src={car.file}/> 
-                        <p onClick={() => goToCar(car._id)}>{car.name}, {car.yearModel}</p>
+                        <p onClick={() => goToCar(car._id)}>{car.brand} {car.name}, {car.yearModel}</p>
                         <img className="edit-car" src={imgEdit} onClick={() => editCar(car._id)}/>
                         <DeleteSoldCar _id={car._id} />
                     </div>
@@ -112,7 +113,6 @@ export const Profile = () => {
 
             try {
                 const result = await carServices.findByUser(myId);
-                console.log(result.data)
                 return result.data;
             } catch (error) {
                 console.error("Erro ao buscar carros:", error);
@@ -132,25 +132,24 @@ export const Profile = () => {
 
     return (
         <>
-            {!mobile && <Header /> }
             <div className="container-profile">
                 <ActionHeader actionCallback={finishUpdate} disabled={!name}/>
                 <UploadImage image={image} imagemPreviewClassName="avatar avatarPreview" imagemPreview={image.preview || imgUser} setImage={setImage} />
                 <div className="input">
                     <div>
-                        <span >Nome</span>
+                        <span>Nome</span>
                         <input type="text" placeholder="Informe seu nome" value={name} onChange={e => setName(e.target.value)} />
                         {name && <img src={clearIcon} alt="Limpar edição" onClick={() => setName('')}/>}
                     </div>
                 </div>
                 <div className="container-my-cars">
-                     <span >Meus Veículos</span>
-                     <div>{renderList(cars)}</div>
+                     <span>Meus Veículos</span>
+                     <div className="my-cars">{renderList(cars)}</div>
                 </div>
                 <div className="logout">
                     <div onClick={logout}>
                         <img src={logoutIcon} alt="sair"/>
-                        <span >Sair</span>
+                        <span>Sair</span>
                     </div>
                 </div>
             </div>

@@ -5,7 +5,7 @@ type PublicInputTypes = {
     alt?: string,
     name: string,
     type: string,
-    modelValue: string,
+    modelValue: string | number,
     setValue(s:string): void
 }
 

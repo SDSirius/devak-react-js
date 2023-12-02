@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { CarServices } from "../../services/CarServices"
+import { useNavigate } from 'react-router-dom';
 
 interface Car {
     views:number;
@@ -19,13 +20,16 @@ interface Car {
 export const MostViewed = () => {
     const [car, setCar] = useState<Car[] | Car>([]);
     const carServices = new CarServices();
+    const navigate = useNavigate();
+
+    const goToCar = (_id:string) => {
+        navigate(`/carView/${_id}`);
+    }
 
     useEffect(() => {
         const getCar = async () => {
             const response = await carServices.find('');
-
             setCar(response.data);
-            console.log(car)
         };
 
         getCar();
@@ -42,7 +46,7 @@ export const MostViewed = () => {
             return filteredCars
                 .sort((a, b) => b.views - a.views)
                 .map((result) => (
-                    <div className='most-viewed-cars' key={result._id}>
+                    <div className='most-viewed-cars' key={result._id} onClick={() => goToCar(result._id) }>
                         <img src={result.file} alt={result.name} />
                         <p>{result.name},{result.yearModel}</p>
                     </div>

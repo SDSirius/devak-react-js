@@ -30,7 +30,6 @@ interface SearchResultsProps {
 }
 
 export const SearchResults: React.FC<SearchResultsProps> = ({ results }) => {
-    console.log("results do searchResults", results)
 
     const navigate = useNavigate();
     const [userCars, setUserCars] = useState<React.ReactNode | null>(null);
@@ -87,17 +86,17 @@ export const SearchResults: React.FC<SearchResultsProps> = ({ results }) => {
                     .sort((a, b) => b.value - a.value)
                     .map((result) => (
                     <div key={result._id} className='cars-object' onClick={() => goToCar(result._id)} >
-                        <p >R$ {result.value}</p>
+                        <h1>  R$ {result.value}</h1>
                         <div className="container-cars-object" >
                             <div className='cars-id'>
                                 <img className='exibit-cars' src={result.file} alt={`${result.brand} ${result.name}`} />
                                 <p>Cor: {result.color}</p>
-                                <p>Ano / Modelo: {result.yearModel}</p>
+                                <p>Ano/Modelo: {result.yearModel}</p>
                             </div>
                             <div className="cars-specs">
-                                <p> {result.brand} {result.name}</p>
-                                <p>Quilometros: {result.kilometers}</p>
-                                <p>Placa: {result.plate}</p>
+                                <p> {result.name}, {result.brand}</p>
+                                <p> Km:{result.kilometers}</p>
+                                <p> Placa: {result.plate}</p>
                             </div>
                         </div>
                     </div>
@@ -106,37 +105,39 @@ export const SearchResults: React.FC<SearchResultsProps> = ({ results }) => {
         );
     } else if ((results as User).email) {
         const user = results as User;
-        console.log("propriedades do usuário => ",user);
         return (
             <div className='user-object' >
                 <h1>{user.name}</h1>
                 <div className="container-user-object" >
                     <div className='user-id'>
                         <img className='exibit-user' src={user.avatar} alt={`${user.name}`} />
+                        <p>Entre em contato com o vendedor: {user.email} </p>
                     </div>
                     <div className="user-specs">
-                        {userCars}
+                        <p>Carros a venda do Usuário: {user.name}</p>
+                        <div className="user-cars-specs">
+                            {userCars}
+                        </div>
                     </div>
                 </div>
             </div>
         )
     } else {
         const car = results as Car;
-        console.log(car);
         return (
             <div className='car-object' >
                 <h1>R$ {car.value}</h1>
                 <div className="container-car-object" >
                     <div className='car-id'>
                         <img className='exibit-car' src={car.file} alt={`${car.brand} ${car.name}`} />
-                        <p> {car.brand} {car.name}</p>
+                        <p> {car.brand}, {car.name}</p>
                     </div>
                     <div className="car-specs">
                         <p>Cor: {car.color}</p>
                         <p>Ano / Modelo: {car.yearModel}</p>
                         <p>Quilometros: {car.kilometers}</p>
                         <p>Placa: {car.plate}</p>
-                        <p onClick={() => goToUser(car.user)}> Veja o Perfil do Vendedor!</p>
+                        <p className='link-seller' onClick={() => goToUser(car.user)}> Veja o Perfil do Vendedor!</p>
                     </div>
                 </div>
             </div>

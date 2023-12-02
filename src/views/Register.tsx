@@ -27,7 +27,6 @@ export const Register = () => {
 
     const doRegister = async () => {
         try {
-            console.log(image)
             setError('')            
             if(!image 
                 || !name || name.trim().length < 2 
@@ -48,7 +47,6 @@ export const Register = () => {
             formData.append('password', password);
             formData.append('file', image.file as Blob);
             
-            console.log(formData)
             await registerServices.register(formData);
             setLoading(false);
     

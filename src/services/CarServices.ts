@@ -18,17 +18,14 @@ export class CarServices extends HttpApiServices{
     }
 
     async getFilteredCars (filter:string){
-        console.log(filter  )
         return await this.post(`/cars/filters`, filter);
     }
 
     async insertCar (formData: FormData){
-        console.log({formData},formData)
         await this.post(`/cars/upload`,formData);
     }
     
     async updateCar (id:string, formData: FormData){
-        console.log({formData},formData)
         await this.put(`/cars/${id}`,formData);
     }
 

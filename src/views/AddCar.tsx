@@ -29,7 +29,7 @@ export const AddCar = () => {
     const [brand,setBrand] = useState('');
     const [yearModel,setYearModel] = useState('');
     const [value, setValue] = useState('');
-    const [kilometers,setKilometers] = useState('');
+    const [kilometers, setKilometers] = useState('');
     const [color,setColor] = useState('');
     const [plate,setPlate] = useState('');
     const [loading, setLoading] = useState(false);
@@ -46,6 +46,9 @@ export const AddCar = () => {
             const formData = new FormData();
             setError('');
 
+            const numericValue = parseFloat(value) as number;
+            const numericKilometers = parseFloat(kilometers) as number;
+
             if(!name || name.trim().length< 2){
                 return setError('Favor fornecer um nome corretamente');
             }
@@ -61,23 +64,9 @@ export const AddCar = () => {
             if(!plate || plate.trim().length< 2){
                 return setError('forneça a numeração da placa corretamente');
             }
-            
-            // const numberOfValue = Number(value);
-            // if (isNaN(numberOfValue)) {
-            //     return setError('O campo "Valor" deve ser um número.');
-            // }
 
-            // const numberOfKilometer = Number(kilometer);
-            // if (isNaN(numberOfKilometer)) {
-            //     return setError('O campo "Quilometragem" deve ser um número.');
-            // }
-
-            if(!value || value.trim().length< 2){
-                return setError('Favor fornecer um valor corretamente');
-            }
-    
-            if(!kilometers || kilometers.trim().length< 2){
-                return setError('Favor fornecer um valor para quilometragem');
+            if (isNaN(numericValue) || isNaN(numericKilometers)) {
+                return setError('Forneça valores válidos para Valor e Quilometragem.');
             }
             
             if(!yearModel || yearModel.trim().length< 2){
@@ -87,22 +76,18 @@ export const AddCar = () => {
             if(!image ){
                 return setError('Selecione uma foto do veículo.');
             }
-            
-            console.log("kilometer ",kilometers)
-            console.log("value ",value)
-
 
             formData.append('name', name);
             formData.append('brand',brand);
             formData.append('color', color);
             formData.append('plate', plate);
             formData.append('file', image.file as Blob);
-            formData.append('value', value); 
-            formData.append('kilometers', kilometers);
+            formData.append('value', typeof numericValue === 'number' ? String(numericValue) : '');
+            formData.append('kilometers', typeof numericKilometers === 'number' ? String(numericKilometers) : '');
+
             formData.append('yearModel', yearModel);
             
             setLoading(true);
-            console.log(formData)
             await carServices.insertCar(formData);
             setLoading(false);
             navigate('/');

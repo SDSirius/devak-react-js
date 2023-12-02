@@ -47,6 +47,5 @@ export const UserView = () => {
             </div> 
             <Footer /> 
         </>
-        
-        )
+    )
 };

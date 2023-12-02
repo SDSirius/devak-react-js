@@ -1,26 +1,43 @@
 @import "./configs.scss";
 
 .main-area {
+    // border: 5px double $error;
     display: flex;
     flex-direction: column;
-    left: 41%;
+    justify-content: center;
+    position: absolute;
+    top: 15.7%;
+    left: 1%;
     right: 1%;
-    top: 15%;
+    bottom: 12%;
+    background-image: url('../images/background_car.png');
+    background-size: 212px; 
+    background-attachment: fixed;
+    height: calc(100% - 26%); 
+    width: 100%;
+    overflow-y: auto; 
+    width: 98%;
 
     .upper-main {
+        width: 98%;
+        // border: 2px double $error;
+        position: absolute;
+        top: 0%;
         display: flex;
         flex-direction: column;
-        height: 15%;
+        height: 25%;
         padding: 1%;
-        background-color: rgba(100,100,100, 0.45);
+    
 
         .search-bar {
+            border: 1px double $primaryColor;
+            // background-color: rgba(100,100,100, 0.95);
             display: flex;
-            // justify-content: flex-start;
+            z-index: 1;
 
             width: auto;
-            position: fixed;
-            top: 16%;
+            position: relative;
+            top: 1%;
             right: 1%;
             left: 1%;
             
@@ -32,7 +49,7 @@
                 margin-left: 0.5%;
                 margin-right: 0.5%;
                 padding: 1%;
-                outline: 1px solid $primaryColorWithOpacity;
+                outline: 1px double $primaryColor3;
             }
 
             input {
@@ -44,38 +61,47 @@
         }
 
         .container-most-views {
-            position: fixed;
-            left: 2%;
-            right: 2%;
-            top: 21.5%;
+            z-index: 1;
+            position: relative;
+            height: 65%;
+            width: 100%;
+            left: 1%;
+            right: 1%;
+            top: 5%;
             display: flex;
             overflow-x: scroll;
-            background-color: $greyColor;
-            height: 100px;
+            background-color: rgba(255, 200, 200, 0.26);
+            border-radius: 5%;
+            border: 1px double $primaryColor5;
 
             .most-viewed-cars {
-                margin: 4px 2px;
-                flex-direction: column;
+                margin: 7px 5px;
                 position: relative;
                 display: flex;
-                height: 98%;
+                flex-direction: column;
+                height: 87%;
                 width: 125px;
                 align-items: center;
                 justify-content: center;
                 border: 0.5px solid $primaryColor;
-                padding: 7% 0;
+                padding: 2% 0;
+                border-radius: 5px;
                 
                 img {
                     position: relative;
-                    top: 0px;
+                    border: 0.5px solid black;
+                    top: 10%;
                     width: 95px;
                     height: 65px;
+                    border-radius: 5%;
                     // max-height: 75px;
                 }
                 
                 p {
+                    top: 15%;
+                    color: black;
                     position: relative;
-                    bottom: 0;
+                    // bottom: 0;
                     font-family: $fontRegular;
                     
                 }
@@ -85,146 +111,369 @@
 
     
     .container-cars {
-        margin-top: 30%;
-        margin: 1%;
-        width: 100%;
+        border: 5px double $primaryColor5;
         display: flex;
-        flex-wrap: wrap;
-        justify-content: space-evenly;
-        
+        position: absolute;
+        top: 25%;
+        padding: 1%;
+        width: 100%;
+        flex-direction: column;
+        justify-content: center;
+        // overflow-y: scroll;
         
         .cars-object {
             display: flex;
             flex-wrap: wrap;
             padding: 1%;
-            width: 30%;   
+            width: 98%;
             border: 1px solid $greyColor1;
             border-radius: 25px;
-            margin: 0.5%;
-            p {
+            margin: 1%;
+            background-color: rgba(255,255,240, 0.55);
+    
+            h1 {
+                width: 100%;
+                display: flex;
                 font-family: $fontBold;
                 justify-content: center;
                 align-items: center;
-
+    
             }
             .container-cars-object {
                 display: flex;
                 align-items: center;
                 
                 .cars-id{
-                    font-size: 17px;
+                    padding: 1%;
+                    width: 62%;
                     p {
-                        font-family: $fontLight;
+                        
+                        font-size: 18px;
+                        // font-family: $fontLight;
+                        line-height: 75%;
                     }
                     img {
-                        width: 100%;
-                        
-                        border: 1px solid black;
-                        border-radius: 5%;
+                        width: 88%;
+                        border: 1px double black;
+                        border-radius: 25px;
+                        margin-bottom: 2%;
                     }
-
+    
                 }    
                 .cars-specs {
-                    font-size: 16px;
-
-                    img {
-                        height: 20px;
-                        width: 20px;
-                    }
-
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    width: 38%;
                     p {
-                        font-family: $fontLight;
+                        padding: 1%;
+                        font-size: 18px;
+                        font-family: $fontRegular;
                     }
-
+    
                 }
             }
     
         }
+        
+   
     
     }
-    @media screen and (min-width : $desktopBreakpoint) {
-        outline: 1px solid $greyColor5;
-        position: fixed;
-        left: 26%;
-        right: 1%;
-        top: 16%;
-        bottom: 1%;
-        // border-radius: 5%;
 
-        .upper-main {
-            display: flex;
-            height: 24%;
-            border-radius: 25px;
-            outline: 1px solid $greyColor5;
+    .user-object {
+        border: 1px double $primaryColor5 ;
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        border-radius: 25px;
+        padding: 2%;
+        align-items: center;
+        justify-content: flex-start;
+        
+        h1 {
+            top: 2%;
+        }
+        .container-user-object {
+                display: flex;
+                flex-direction: column;
+                margin-bottom: 1%;
+        
+                .user-id {
+                    display: flex;
+                    justify-content: center;
             
-            .search-bar {
-                position: fixed;
-                top: 17%;
-                left: 27%;
-                width: 72%;
-                height: 50px;
+                    img {
+                        width: 45%;
+                        border: 2px double $primaryColorWithOpacity;
+                        border-radius: 20px;
+                    }
+                    p {
+                        margin-left: 2%;
+                        font-size: 18px;
+                    }
+                }
+        
+                .user-specs {
+                    margin-top: 4%;
+    
+                    p {
+                        display: flex;
+                        justify-content: center;
+                        font-size: 18px;
+                    }
+                    
+                    .user-cars-specs{
+                        display: flex;
+                        flex-wrap: wrap;
+                        justify-content: space-evenly;
+    
+                        .cars-object {
+                            display: flex;
+                            flex-direction: column;
+                            margin-top: 1%;
+                            border-radius: 5px;
+                            justify-content: center;
+                            border: 1px double $primaryColor3;
+                            
+                            padding: 0 2%;
+                            width: 28%;
+                            height: 33%;
+            
+                            &:hover {
+                                cursor: pointer; 
+                            }
+            
+                            h1 {
+                                text-align: center;
+                            }
+                
+                            img {
+                                width: 100%;
+                            }
+                            p {
+                                text-align: center;
+                                font-size: 16px;
+                            }
+                        }
+    
+                    }
+                }
+            }
+    }
+
+    .car-object {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        width: 98%;
+        height: 100%;
+        border: 2px double $primaryColor;
+        h1 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container-car-object {
+            padding: 2%;
+            
+            .car-id {
+
+                img {
+                    border: 2px solid black;
+                    border-radius: 25px;
+                    width: 100%;
+                }
+                 
+                p {
+                    font-size: 20px;
+                    font-weight: 700;
+                    font-family: $fontBold;
+                    align-items: center;
+                    justify-content: center;
+                }
             }
 
-            .container-most-views{
-                position: relative;
-                top: 40%;
-                left: 0.5%;
-                width: 100%;
-                overflow-x: scroll;
-               }
-            
-               // .container-car {
+            .car-specs {
+
+                p {
+                    display: flex;
+                    justify-content: space-around;
+                    font-size: 18px;
+                    background-color: rgba(255, 255, 255, 0.5);
+                }
+
+                .link-seller {
+                    font-size: 20px;
+                    text-decoration: underline;
+                    cursor: pointer;
+                    background-color: rgba(255, 255, 200, 0.4);
+                    &:hover {
+                        color: blue;
+                    }
+                }
+            }
         }
-        
-        //     height: 45px;
-        //     justify-content: flex-start;
-        // }
-        
-            
-        //     width: 100%;
-        //     display: flex;
-        //     flex-wrap: wrap;
-            
-            
-        //     .car-object {
-        //         padding: 1%;
-        //         width: 45%;   
-        //         border: 1px solid black;
-        //         border-radius: 25px;
-        //         margin: 0.5%;
-        //         .h1 {
-        //             font-family: $fontBold;
-        //             font-size: 25px;
-        //             display: flex;
-        //             align-items: center;
-        //         }
-        //         .container-car-object {
-        //             display: flex;
-        //             align-items: center;
-        //             justify-content: space-evenly;
+    }
+
+
+    
+    @media screen and (min-width : $desktopBreakpoint) {
+        position: fixed;
+        border: 5px dotted $error;
+        top: 16%;
+        width: 98%;
+        height: 84%;
+        overflow: hidden;
+
+        .upper-main {
+            .search-bar {
+                border: none;
+                position: fixed;
+                width: 70%;
+                height: 60px;
+                top: 17%;
+                right: 1%;
+                left: 26%;
+                justify-content: space-evenly;
+                img {
+                    border-radius: 12.5px;
+                    height: 98%;
+                    background-color: white;
+                }
+                
+                input {
+                    border-radius: 12.5px;
+                    height: 98%;
+                    width: 92%;
+                }
+            }
+
+            .container-most-views {
+                z-index: 1;
+                position: fixed;
+                height: 12.5%;
+                // width: 100%;
+                left: 26%;
+                right: 1%;
+                top: 23.5%;
+                display: flex;
+                overflow-x: auto;
+                background-color: rgba(255, 200, 200, 0.26);
+                border-radius: 25px;
+                border: 1px double $primaryColor5;
+                width: 70%;
+    
+                .most-viewed-cars {
+                    margin: 7px 5px;
+                    position: relative;
+                    display: flex;
+                    flex-direction: column;
+                    height: 87%;
+                    width: 125px;
+                    align-items: center;
+                    justify-content: center;
+                    border: 0.5px solid $primaryColor;
+                    padding: 2% 0;
+                    border-radius: 25px;
                     
-        //             .car-id{
-        //                 font-size: 20px;
-        //                 img {
-        //                     width: 200px;
-        //                     height: 150px;
-        //                     border: 1px solid black;
-        //                     border-radius: 5%;
-        //                 }
-    
-    
-        //             }    
-        //             .car-specs {
-        //                 font-size: 16px;
-        //                 img {
-        //                     height: 20px;
-        //                     width: 20px;
-        //                 }
-        //             }
-        //         }
+                    img {
+                        position: relative;
+                        border: 0.5px solid black;
+                        top: 10%;
+                        width: 95px;
+                        height: 65px;
+                        border-radius: 5%;
+                        // max-height: 75px;
+                    }
+                    
+                    p {
+                        top: 15%;
+                        color: black;
+                        position: relative;
+                        // bottom: 0;
+                        font-family: $fontRegular;
+                        
+                    }
+                }
+            }
+
+        }
+
+        .container-cars {
+            border: 5px double $primaryColor5;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            position: absolute;
+            top: 24%;
+            left: 25%;
+            padding: 1%;
+            width: 74.5%;
+            bottom: 1%;
+            justify-content: space-between;
+            overflow-y: auto;
+            
+            
+            .cars-object {
+                display: flex;
+                flex-wrap: wrap;
+                // padding: 1%;
+                width: 48%;
+                border: 1px solid $greyColor1;
+                border-radius: 25px;
+                height: 48%;
+                background-color: rgba(255,255,240, 0.55);
         
-        //     }
+                p {
+                    display: flex;
+                    font-family: $fontBold;
+                    justify-content: center;
+                    align-items: center;
         
+                }
+                .container-cars-object {
+                    display: flex;
+                    align-items: center;
+                    height: auto;
+                    
+                    .cars-id{
+                        display: flex;
+                        flex-direction: column;
+                        position: relative;
+                        height: 100%;
+
+                        p {
+                            font-size: 16px;
+                            // font-family: $fontLight;
+                            line-height: 75%;
+                        }
+                        img {
+                            width: 90%;
+                            border: 1px double black;
+                            border-radius: 25px;
+                            margin-bottom: 2%;
+                        }
         
+                    }    
+                    .cars-specs {
+        
+                        p {
+                            padding: 1%;
+                            font-size: 16px;
+                            font-family: $fontRegular;
+                        }
+        
+                    }
+                }
+        
+            }
+            
+       
+        
+        }
+
     }
 }

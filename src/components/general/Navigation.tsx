@@ -29,10 +29,7 @@ export const Navigation = ( ) => {
             }
             return homeIcon;
           case 'vender':
-            if (location.pathname === '/' ) {
-              return sellIcon;
-            }
-            return linkIcon;
+            return sellIcon;
           default:
             return '';
         }

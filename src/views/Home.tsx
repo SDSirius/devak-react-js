@@ -10,7 +10,6 @@ import { MostViewed } from '../components/general/MostViewed';
 
 export const Home = () => {
 
-    console.log("está na home")
     const carServices = new CarServices();
     const [allCars, setAllCars] = useState([]);
     const [searchResults, setSearchResults] = useState([]);
@@ -46,7 +45,7 @@ export const Home = () => {
                     <SearchCar onSearchComplete={handleSearchComplete} />
                     <MostViewed />
                 </div>
-                <SearchResults results={searchResults.length > 0 ? searchResults : allCars.slice(0, 10) || results} /> 
+                <SearchResults results={searchResults.length > 0 ? searchResults : allCars.slice(0, 10)} /> 
             </div>
             <Footer />
         </SearchProvider>

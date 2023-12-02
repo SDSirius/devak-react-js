@@ -4,7 +4,6 @@ import { HttpApiServices } from "./HttpApiServices";
 export class LoginServices extends HttpApiServices {
     async login(body:any, setToken:any){
         const {data} = await this.post('/auth/login', body);
-        console.log(data)
 
         if (data){
             localStorage.setItem("id", data.id);
@@ -14,9 +13,6 @@ export class LoginServices extends HttpApiServices {
             const userResponse = await this.get(`/user/${data.id}`);
             if (userResponse && userResponse.data){
                 const user = userResponse.data;
-                
-                console.log(user)
-
                 localStorage.setItem("name", user.name);
                 
                 if (user.avatar){

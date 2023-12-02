@@ -24,7 +24,6 @@ export const SearchProvider: React.FC<SearchContextProps> = ({ children }) => {
     };
 
     const updateSearchResults = (results: any[]) => {
-        console.log("update do searchResults =>",results)
         if (!arraysAreEqual(searchResults, results)) {
             setSearchResults(results);
         }

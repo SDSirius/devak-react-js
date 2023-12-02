@@ -18,9 +18,7 @@ export const SearchCar: React.FC<SearchCarProps> = ({ onSearchComplete }) => {
     const [searchTerm, setSearchTerm] = useState('');
   
     const onTyping = (e:any) => {
-        console.log(searchTerm)
         setSearchTerm(e.target.value)
-        
         handleSearch(searchTerm)
     }
 

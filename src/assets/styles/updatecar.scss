@@ -1,0 +1,52 @@
+@import './configs.scss';
+
+.container-update-car {
+    display: flex;
+    flex-direction: column;
+    width: 98%;
+    height: 55%;
+    border: 2px double $primaryColor;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 15px;
+
+    h1 { 
+        position: relative;
+        top: 3%;
+    }
+        
+
+    .uploadImagemContainer {
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        align-items: center;
+
+
+        .imagePreviewContainer {
+            img {
+                width: 700%;
+                justify-content: end;
+            }
+        }
+    
+    }
+    
+    .container-edit-car {
+        position: relative;
+        left: 1%;
+        justify-content: center;
+        width: 94%;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        align-items: flex-start;
+        justify-content: flex-start;
+        background-color: white;
+        
+        img {
+            width: 19px;
+            height: 19px;
+        }
+        
+    }
+}
