@@ -1,3 +1,4 @@
+import { Modal } from 'react-bootstrap';
 
 interface ConfirmationInputProps {
   isOpen: boolean;
@@ -11,12 +12,22 @@ export const ConfirmationInput: React.FC<ConfirmationInputProps> = ({ isOpen, on
   }
 
   return (
-    <div className="modal-overlay">
-      <div className="modal">
-        <p>Tem certeza que deseja excluir este carro?</p>
-        <button onClick={onCancel}>Cancelar</button>
-        <button onClick={onConfirm}>Confirmar</button>
-      </div>
-    </div>
+    <Modal
+      show={isOpen}
+      onHide={onCancel}
+      className='container-modal'
+      style={{ zIndex: 1000 }}>
+      <Modal.Body>
+        <div className="modal-overlay">
+          <div className="modal">
+            <p>Tem certeza que deseja excluir este carro?</p>
+            <div className='delete-choice'>
+              <button className='button-confirm' onClick={onConfirm}>Confirmar</button>
+              <button className='button-cancel' onClick={onCancel}>Cancelar</button>
+            </div>
+          </div>
+        </div>
+      </Modal.Body>
+    </Modal>
   );
 };

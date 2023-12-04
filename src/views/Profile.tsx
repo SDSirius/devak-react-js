@@ -1,6 +1,5 @@
 import { ActionHeader } from "../components/general/ActionHeader";
 import { Footer } from "../components/general/Footer";
-import { Header } from "../components/general/Header";
 import { useState, useContext, useEffect } from 'react';
 import { LoginServices } from "../services/LoginServices";
 import { useNavigate } from "react-router-dom";
@@ -39,7 +38,6 @@ export const Profile = () => {
     const [name, setName]=useState(localStorage.getItem('name') || '');
     const [image, setImage] = useState<{ preview: string; file: File | null }>({ preview: myAvatar as string, file: null });
     const  myId  = localStorage.getItem('id' || '');
-    const mobile = window.innerWidth <= 992;
     
     const editCar = (_id:string) => {
         navigate(`/UpdateCar/${_id}`);

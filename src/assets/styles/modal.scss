@@ -1,176 +1,117 @@
 @import './configs.scss';
 
-.container-modal {
-    margin-top: 150px;
+.modal-dialog {
+    display: flex;
+    height: 50%;
+    width: 80%;
+    position: relative;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    // z-index: 1;
+    top: 25;
 
     .modal-content {
-        border-radius: 15px;
-    }
+        display: flex;
+        flex-direction: column;
+        height: 80%;
+        // border-radius: 5%;
 
-    .modal-body {
-        .content {
-            padding: 10px;
+        .modal-body {
 
-            p {
-                font-weight: 600;
-                font-size: 12px;
-                line-height: 17px;
-                color: $greyColor;
-                margin: 0;
-            }
+            .modal {
+                border-radius: 50px;
+                display: flex;
+                position: absolute;
+                flex-direction: column;
+                top: 30%;
+                bottom: 30%;
+                height: 40%;
+                left: 15%;
+                right: 15%;
+                width: 70%;
+                background-color: white;
+                border: 5px solid red;
+                padding: 2%;
+                justify-content: center;
+                align-items: center;
 
-            span {
-                font-weight: 500;
-                font-size: 16px;
-                line-height: 22px;
-                color: $primaryColor;
-            }
-
-            .line {
-                margin: 16px 0;
-                width: 100%;
-                height: 0;
-                border-bottom: 1px solid #DADADA;
-            }
-
-            .avatars-scroll {
-                overflow-y: scroll;
-                max-height: 200px;
-
-                &::-webkit-scrollbar {
-                    width: 6px;
-                }
-
-                &::-webkit-scrollbar-track {
-                    background: $primaryColorWithOpacity;
-                }
-
-                &::-webkit-scrollbar-thumb {
-                    background: $primaryColor;
-                    border-radius: 8px;
-                }
-
-                .avatars {
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    flex-wrap: wrap;
-
-                    .container-avatar {
-                        margin: 3px;
-                        width: 29.8%;
-                        height: 23vw;
-                        display: flex;
+                
+                    p {
+                        position: relative;
                         align-items: center;
                         justify-content: center;
-                        background-color: $primaryColor4;
-                        border: 2px solid $primaryColor4;
-                        border-radius: 4px;
-
-                        &.selected {
-                            border-color: $primaryColor;
-                        }
-
-                        img {
-                            height: 90%;
-                        }
+                        font-weight: 600;
+                        font-size: 16px;
+                        line-height: 17px;
+                        color: $greyColor;
+                        
                     }
-                }
-            }
 
-            .actions {
-                margin-top: 16px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-
-                span {
-                    cursor: pointer;
-                    text-decoration: underline;
-                    margin-right: 20px;
-                }
-
-                button {
-                    margin: 0;
-                    width: 50%;
-                }
-            }
-
-            .container {
-                width: 100%;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-
-                span {
-                    font-weight: 700;
-                    font-size: 18px;
-                    line-height: 120%;
-                    margin-bottom: 8px;
-                }
-
-                p {
-                    font-weight: 400;
-                    font-size: 16px;
-                    line-height: 24px;
-                }
-
-                .colors{
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    flex-wrap: wrap;
-
-                    div{
-                        width: 80px;
-                        height: 80px;
-                        margin: 4px;
-                        border: 3px solid $greyColor;
-                        cursor: pointer;
-
-                        &.selected{
-                            border-color: $primaryColor;
+                    .delete-choice {
+                        display: flex;
+                        position: relative;
+                        justify-content: space-evenly;
+                        .button-confirm {
+                            background-color: $primaryColor5;
+                            margin: 0 5%;
+                            &:hover {
+                                opacity: 1;
+                                background-color: whitesmoke;
+                            }
                         }
-
-                        &:hover{
-                            border-color: $primaryColor;
-                        }
+                        .button-cancel {
+                            background-color: $primaryColorWithOpacity;
+                            margin: 0 5%;
+                            &:hover {
+                                opacity: 1;
+                                background-color: white;
+                            }
                     }
                 }
             }
         }
     }
 
+
     @media screen and (min-width: $desktopBreakpoint) {
         margin-top: 100px;
 
         .modal-content {
             .modal-body {
-                .content {
-                    .avatars-scroll {
-                        height: 370px;
 
-                        .avatars {
-                            .container-avatar {
-                                width: 28%;
-                                height: 9.5vw;
-                                margin: 8px;
-                                cursor: pointer;
+                .modal {
+                    p {
+                        width: 80%;
+                        font-size: 20px;
+                        line-height: 17px;
+                        color: $greyColor;
+                        
+                    }
 
-                                &:hover {
-                                    border-color: $greyColor;
-                                }
-
-                                &.selected {
-                                    &:hover {
-                                        border-color: $primaryColor;
-                                    }
-                                }
+                    .delete-choice {
+                        width: 80%;
+                        justify-content: space-evenly;
+                        
+                        .button-confirm {
+                            background-color: $primaryColor5;
+                            margin: 0 5%;
+                            &:hover {
+                                opacity: 1;
+                                background-color: whitesmoke;
+                            }
+                        }
+                        .button-cancel {
+                            background-color: $primaryColorWithOpacity;
+                            margin: 0 5%;
+                            &:hover {
+                                opacity: 1;
+                                background-color: white;
                             }
                         }
                     }
                 }
+
             }
         }
     }

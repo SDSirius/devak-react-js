@@ -50,16 +50,15 @@ export const SearchResults: React.FC<SearchResultsProps> = ({ results }) => {
       
           if (data && data.length > 0) {
             const userCarsElements = data
-              .sort((a, b) => b.views - a.views)
-              .map((userCar) => (
+            .sort((a, b) => b.views - a.views)
+            .map((userCar) => (
                 <div key={userCar._id} className='cars-object' onClick={() => !userCar.sold ? goToCar(userCar._id) : alert("Carro já vendido")}>
-                  <h1>{userCar.name} </h1>
-                  <img src={userCar.file} alt={userCar.name} />
-                  <p>
-                    R$ {userCar.value} {userCar.sold ? ' Vendido' : 'Disponível'}
-                  </p>
+                    <h1>{userCar.name} </h1>
+                    <img src={userCar.file} alt={userCar.name} />
+                    <p>R$ {userCar.value.toLocaleString()} {userCar.sold ? ' Vendido' : 'Disponível'}
+                    </p>
                 </div>
-              ));
+            ));        
       
             setUserCars(userCarsElements);
           } else {
@@ -86,7 +85,7 @@ export const SearchResults: React.FC<SearchResultsProps> = ({ results }) => {
                     .sort((a, b) => b.value - a.value)
                     .map((result) => (
                     <div key={result._id} className='cars-object' onClick={() => goToCar(result._id)} >
-                        <h1>  R$ {result.value}</h1>
+                        <h1>  R$ {result.value.toLocaleString()}</h1>
                         <div className="container-cars-object" >
                             <div className='cars-id'>
                                 <img className='exibit-cars' src={result.file} alt={`${result.brand} ${result.name}`} />
@@ -95,7 +94,7 @@ export const SearchResults: React.FC<SearchResultsProps> = ({ results }) => {
                             </div>
                             <div className="cars-specs">
                                 <p> {result.name}, {result.brand}</p>
-                                <p> Km:{result.kilometers}</p>
+                                <p>Km: {result.kilometers.toLocaleString()}</p>
                                 <p> Placa: {result.plate}</p>
                             </div>
                         </div>
@@ -126,7 +125,7 @@ export const SearchResults: React.FC<SearchResultsProps> = ({ results }) => {
         const car = results as Car;
         return (
             <div className='car-object' >
-                <h1>R$ {car.value}</h1>
+                 <h1>{car.name} por apenas R$ {car.value.toLocaleString()}</h1>
                 <div className="container-car-object" >
                     <div className='car-id'>
                         <img className='exibit-car' src={car.file} alt={`${car.brand} ${car.name}`} />
@@ -135,7 +134,7 @@ export const SearchResults: React.FC<SearchResultsProps> = ({ results }) => {
                     <div className="car-specs">
                         <p>Cor: {car.color}</p>
                         <p>Ano / Modelo: {car.yearModel}</p>
-                        <p>Quilometros: {car.kilometers}</p>
+                        <p>Quilometros: {car.kilometers.toLocaleString()} KM</p>
                         <p>Placa: {car.plate}</p>
                         <p className='link-seller' onClick={() => goToUser(car.user)}> Veja o Perfil do Vendedor!</p>
                     </div>

@@ -18,7 +18,9 @@ interface Car {
 }
 
 export const MostViewed = () => {
-    const [car, setCar] = useState<Car[] | Car>([]);
+    const [cars, setCars] = useState<Car[]>([]);
+    
+
     const carServices = new CarServices();
     const navigate = useNavigate();
 
@@ -27,36 +29,45 @@ export const MostViewed = () => {
     }
 
     useEffect(() => {
-        const getCar = async () => {
+        const getCars = async () => {
             const response = await carServices.find('');
-            setCar(response.data);
+            const filteredCars = response.data.filter((result:Car) => result.views > 0);
+            setCars(filteredCars);
         };
 
-        getCar();
+        getCars();
     }, []);
 
-    if (!car) {
+    if (!cars) {
         return <p>Não há carros a exibir</p>;
     }
 
     const renderCars = () => {
-        if (Array.isArray(car) && car.length > 1) {
-            const filteredCars = car.filter((result) => result.views > 0);
-    
-            return filteredCars
+        if (Array.isArray(cars) && cars.length > 0) {
+
+            return (
+            <div className='container-results'>
+              {cars
                 .sort((a, b) => b.views - a.views)
                 .map((result) => (
-                    <div className='most-viewed-cars' key={result._id} onClick={() => goToCar(result._id) }>
-                        <img src={result.file} alt={result.name} />
-                        <p>{result.name},{result.yearModel}</p>
-                    </div>
-                ));
-        } else if (car && !Array.isArray(car)) {
-            return <h1>R$ {car.value}</h1>;
+                  <div className='most-viewed-cars' key={result._id} onClick={() => goToCar(result._id)}>
+                    <img src={result.file} alt={result.name} />
+                    <p>{result.name},{result.yearModel}</p>
+                  </div>
+                ))}
+            </div>
+          );
         }
     
         return null;
-    };
+      };
 
-    return <div className='container-most-views'>{renderCars()}</div>;
+    return (
+        <>
+            <div className='container-most-views'>
+                <p > Top {cars.length > 20 ? "20" : cars.length} carros</p>
+                {renderCars()}
+            </div>
+        </>
+    );
 };

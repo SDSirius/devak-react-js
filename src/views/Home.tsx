@@ -13,9 +13,6 @@ export const Home = () => {
     const carServices = new CarServices();
     const [allCars, setAllCars] = useState([]);
     const [searchResults, setSearchResults] = useState([]);
-    const [results, setResults ] = useState([]);
-
-
 
     const handleSearchComplete = (results:any) => {
         setSearchResults(results);
@@ -37,18 +34,20 @@ export const Home = () => {
     }, []);
 
     return (
-        <SearchProvider>
-            <Header />
-            <FiltersMenu onSearchComplete={handleSearchComplete}  />
-            <div className='main-area'>
-                <div className='upper-main'>
-                    <SearchCar onSearchComplete={handleSearchComplete} />
-                    <MostViewed />
+        
+            <SearchProvider>
+                <Header />
+                <FiltersMenu onSearchComplete={handleSearchComplete}  />
+                <div className='main-area'>
+                    <div className='upper-main'>
+                        <SearchCar onSearchComplete={handleSearchComplete} />
+                        <MostViewed />
+                    </div>
+                    <SearchResults results={searchResults.length > 0 ? searchResults : allCars.slice(0, 10)} /> 
                 </div>
-                <SearchResults results={searchResults.length > 0 ? searchResults : allCars.slice(0, 10)} /> 
-            </div>
-            <Footer />
-        </SearchProvider>
+                <Footer />
+            </SearchProvider>
+        
     );
 };
 

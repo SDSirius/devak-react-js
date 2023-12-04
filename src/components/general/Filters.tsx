@@ -12,7 +12,6 @@ type FiltersProps = {
 export const Filters: React.FC<FiltersProps> = ({ filter, onSearchComplete, hideMenu }) => {
     const [data, setData] = useState<any[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
-    // const [results, setResults] = useState([]);
     const carService = new CarServices();
     
     const goToFilter = async (filter:string, item:string) => {
