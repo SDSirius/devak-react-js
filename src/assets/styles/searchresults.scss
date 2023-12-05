@@ -81,11 +81,13 @@
                 justify-content: center;
                 font-size: 18px;
                 top: -2%;
+                margin-bottom: 3%;
             }
 
             .container-results {
                 // border: 1px solid $error;
                 display: flex;
+                flex-direction: column;
                 flex-wrap: wrap;
                 position: relative;
                 height: 90%;
