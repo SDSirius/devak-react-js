@@ -278,6 +278,13 @@
                                 text-align: center;
                                 font-size: 16px;
                             }
+                            .not-allowed {
+                                display: flex;
+                                position: absolute;
+                                top: 64%;
+                                width: 28%;
+
+                            }
                         }
     
                     }
@@ -344,7 +351,7 @@
     
     @media screen and (min-width : $desktopBreakpoint) {
         position: fixed;
-        border: 5px dotted $error;
+        // border: 5px dotted $error;
         top: 16%;
         width: 98%;
         height: 84%;

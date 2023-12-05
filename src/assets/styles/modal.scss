@@ -1,21 +1,19 @@
 @import './configs.scss';
 
 .modal-dialog {
-    display: flex;
-    height: 50%;
-    width: 80%;
-    position: relative;
-    justify-content: center;
-    align-content: center;
-    align-items: center;
-    // z-index: 1;
-    top: 25;
+    // display: flex;
+    // height: 50%;
+    // width: 80%;
+    // position: relative;
+    // justify-content: center;
+    // align-content: center;
+    // align-items: center;
+    // top: 25;
 
     .modal-content {
         display: flex;
         flex-direction: column;
         height: 80%;
-        // border-radius: 5%;
 
         .modal-body {
 

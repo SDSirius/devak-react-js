@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { CarServices } from "../../services/CarServices";
 import { useNavigate } from "react-router-dom";
+import forbidIcon from "../../assets/images/not_allowed.png";
 
 
 interface User {
@@ -55,8 +56,8 @@ export const SearchResults: React.FC<SearchResultsProps> = ({ results }) => {
                 <div key={userCar._id} className='cars-object' onClick={() => !userCar.sold ? goToCar(userCar._id) : alert("Carro já vendido")}>
                     <h1>{userCar.name} </h1>
                     <img src={userCar.file} alt={userCar.name} />
-                    <p>R$ {userCar.value.toLocaleString()} {userCar.sold ? ' Vendido' : 'Disponível'}
-                    </p>
+                    <p>R$ {userCar.value.toLocaleString()} {userCar.sold ? ' Vendido' : 'Disponível'}</p>
+                    {userCar.sold ?  (<img className='not-allowed' src={forbidIcon} />) : "" }
                 </div>
             ));        
       
@@ -66,7 +67,7 @@ export const SearchResults: React.FC<SearchResultsProps> = ({ results }) => {
           }
         } catch (error) {
           console.error("Erro ao buscar dados do usuário:", error);
-          setUserCars(<p>Ocorreu um erro ao buscar dados do usuário.</p>);
+          setUserCars(<p>Ocorreu um erro ao buscar carros do usuário.</p>);
         }
     };
       
@@ -125,7 +126,7 @@ export const SearchResults: React.FC<SearchResultsProps> = ({ results }) => {
         const car = results as Car;
         return (
             <div className='car-object' >
-                 <h1>{car.name} por apenas R$ {car.value.toLocaleString()}</h1>
+                 <h1>{car.name} por apenas R$ {car.value ? car.value.toLocaleString() : car.value}</h1>
                 <div className="container-car-object" >
                     <div className='car-id'>
                         <img className='exibit-car' src={car.file} alt={`${car.brand} ${car.name}`} />
@@ -134,7 +135,7 @@ export const SearchResults: React.FC<SearchResultsProps> = ({ results }) => {
                     <div className="car-specs">
                         <p>Cor: {car.color}</p>
                         <p>Ano / Modelo: {car.yearModel}</p>
-                        <p>Quilometros: {car.kilometers.toLocaleString()} KM</p>
+                        <p>Quilometros: {car.kilometers ? car.kilometers.toLocaleString() : car.kilometers} KM</p>
                         <p>Placa: {car.plate}</p>
                         <p className='link-seller' onClick={() => goToUser(car.user)}> Veja o Perfil do Vendedor!</p>
                     </div>

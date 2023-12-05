@@ -30,6 +30,6 @@ export class CarServices extends HttpApiServices{
     }
 
     async deleteCar(id: string) {
-        await this.detele(`/cars/${id}`);
+        await this.delete(`/cars/${id}`);
     }
 }

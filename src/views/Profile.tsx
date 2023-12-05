@@ -91,10 +91,10 @@ export const Profile = () => {
     const renderList = ( cars: Car[] ) => {
         if (cars) {
             return (
-                cars.map(car => (
+                cars.map((car) => (
                     <div className="car-name" key={car._id} >
-                        <img onClick={() => goToCar(car._id)} className="imagem-mini" src={car.file}/> 
-                        <p onClick={() => goToCar(car._id)}>{car.brand} {car.name}, {car.yearModel}</p>
+                        <img onClick={() => !car.sold ? goToCar(car._id) : alert("Carro já vendido")} className="imagem-mini" src={car.file}/> 
+                        <p onClick={() => !car.sold ? goToCar(car._id) : alert("Carro já vendido")}>{car.brand} {car.name}, {car.yearModel} : {car.sold ? ' Vendido' : 'Disponível'}</p>
                         <img className="edit-car" src={imgEdit} onClick={() => editCar(car._id)}/>
                         <DeleteSoldCar _id={car._id} />
                     </div>
