@@ -95,8 +95,9 @@ export const Profile = () => {
                     <div className="car-name" key={car._id} >
                         <img onClick={() => !car.sold ? goToCar(car._id) : alert("Carro já vendido")} className="imagem-mini" src={car.file}/> 
                         <p onClick={() => !car.sold ? goToCar(car._id) : alert("Carro já vendido")}>{car.brand} {car.name}, {car.yearModel} : {car.sold ? ' Vendido' : 'Disponível'}</p>
-                        <img className="edit-car" src={imgEdit} onClick={() => editCar(car._id)}/>
-                        <DeleteSoldCar _id={car._id} />
+                        {!car.sold ? <img className="edit-car" src={imgEdit} onClick={() => editCar(car._id)}/> : "" }
+                        {!car.sold ? <DeleteSoldCar _id={car._id} /> : "" }
+                        
                     </div>
 
                 ))
