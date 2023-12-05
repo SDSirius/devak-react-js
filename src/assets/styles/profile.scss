@@ -107,7 +107,7 @@
 
                 .imagem-mini {
                     object-fit: scale-down;
-                    width: 90%;
+                    width: 80%;
                     max-height: 75px;
                     border: 2px double $primaryColor5;
                     border-radius: 10%;
@@ -124,9 +124,9 @@
                     width: 24px;
                     height: 24px;
                     position: relative;
-                    top: -75%;
+                    top: -100%;
                     margin-bottom: 5%; 
-                    left: 90%; 
+                    left: 92%; 
                     transform: translate(-50%, -50%);
                     opacity: 0.7; 
                     transition: opacity 0.3s ease; 
@@ -169,14 +169,18 @@
 
     @media screen and (min-width:$desktopBreakpoint) {
         position: absolute;
-        top: 2%;
-        bottom: 2%;
+        top: 1%;
+        bottom: 1%;
         width: 64%;
         background-color: white;
         margin: 1% 0;
         box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.14);
         padding: 3%;
 
+        .uploadImagemContainer {
+            margin: 1%;
+
+        }
         .container-upload-image {
             span {
                 font-size: 16px;
@@ -252,6 +256,15 @@
                         width: 90%;
                         max-height: 110px;
                     }
+                     
+                    p {
+                        display: flex;
+                        position:relative;
+                        justify-content: center;
+                        align-items: center;
+                        margin-top: 1%;
+                        font-size: 15px;
+                    }
 
                     &:hover {
                         .edit-car,
@@ -263,7 +276,7 @@
                     .delete-car {
                         display: flex;
                         position: relative;
-                        top: -84%;
+                        top: -75%;
                         margin-bottom: 5%; 
                         left: 4%; 
                         transform: translate(-50%, -50%);
@@ -277,9 +290,9 @@
         .logout {
             position: absolute;
             width: 15%;
-            bottom: 1%;
+            bottom: 2%;
             justify-content: center;
-            background-color: rgba (255,255,255,0.2);
+            background-color: rgba(255, 255, 255, 0.15)
         }
     }
 }

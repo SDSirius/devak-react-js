@@ -1,8 +1,8 @@
 import { useContext, useState } from "react";
-import { Link, useSearchParams } from 'react-router-dom';
-import logo from '..//assets/images/logo.svg';
-import imgEmail from '..//assets/images/mail.svg';
-import imgKey from '..//assets/images/key.svg';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
+import logo from '../assets/images/Sem-título.svg';
+import imgEmail from '../assets/images/mail.svg';
+import imgKey from '../assets/images/key.svg';
 import { PublicInput } from '../components/general/PublicInput';
 import { LoginServices } from "../services/LoginServices";
 import { AuthorizeContext } from "../App";
@@ -20,6 +20,7 @@ export const Login = () => {
     const success = searchParams.get('success');
 
     const { setToken } = useContext(AuthorizeContext)
+    const navigate = useNavigate();
 
     const doLogin = async() =>{
         try {
@@ -46,7 +47,7 @@ export const Login = () => {
 
     return  (
         <div className="container-public">
-            <img src={logo} alt="Logo Devameet" className='logo' />
+            <img src={logo} alt="Logo Devameet" className='logo'  onClick={() => navigate('/')}/>
             <form>
                 {error && <p className="error">{error}</p>}
                 {success && <p className="success">{'Cadastro efetuado com sucesso! Faça seu login'}</p>}

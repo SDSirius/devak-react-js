@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { UploadImage } from "../components/general/UploadImage";
 import { RegisterServices } from "../services/RegisterServices";
 
-import logo from '../assets/images/logo.svg'
+import logo from '../assets/images/Sem-título.svg'
 import imgEmail from '../assets/images/mail.svg'
 import imgKey from '../assets/images/key.svg'
 import imgUser from '../assets/images/user.svg'
@@ -65,7 +65,7 @@ export const Register = () => {
 
     return  (
         <div className="container-public register">
-            <img src={logo} alt="Logo Devameet" className='logo' />
+            <img src={logo} alt="Logo Devameet" className='logo' onClick={() => navigate('/')}/>
             <form>
                 <UploadImage image={image} imagemPreviewClassName="avatar avatarPreview" imagemPreview={image?.preview || imgUser} setImage={setImage} />
                 {/* <AvatarInput image={image} setImage={setImage}/> */}
@@ -81,7 +81,7 @@ export const Register = () => {
 
                 <div className='link'>
                     <p>Ja possui uma conta?</p>
-                    <Link to="/" >Faça seu Login agora!</Link>
+                    <Link to="/login" >Faça seu Login agora!</Link>
                 </div>
             </form>
         </div>
