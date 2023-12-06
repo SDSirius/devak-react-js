@@ -1,27 +1,51 @@
 # React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# DeVaK FrontEnd
 
-Currently, two official plugins are available:
+O projeto DeVaK foi concebido com o propósito de auxiliar os usuários na divulgação de seus carros a fim de vendê-los. A plataforma permite usar uma ferramenta de busca com filtros avançados, container mais vistos, menu lateral interativo, bem como adição de novos veículos, deleção (lógica apenas) e atualização dos veículos, inpactando diretamente na responsividade do menu lateral e nas consultas dos veículos (mais vistos).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### O Devak foi desenvolvido como uma vitrine de carros, onde o usuário divulga seu produto, transações seriam feitas por fora da plataforma.
 
-## Expanding the ESLint configuration
+### Site modelo:
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+```bash
+https://www.kavak.com/br/seminovos
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Tecnologias Utilizadas
+
+O projeto DeVaK utiliza as seguintes tecnologias:
+
+- React.js      18.2.0
+- Axios         1.6.0
+- Bootstrap     5.3.2
+- Sass          1.69.5
+- Vite          4.4.5
+
+## Funcionalidades
+
+- Cadastro, atualização e autenticação de usuários.
+- Cadatsro, busca, atualização e deleção lógica dos veículos.
+
+## Como Usar
+
+#
+### Configuração do ambiente de desenvolvimento
+```bash
+# clonar o repositório 
+git clone https://github.com/SDSirius/devak-react-js
+ 
+# Congigure as variaveis
+fazer uma copia do arquivo `.env.example` e renomear o novo arquivo de `.env.local`, e configurar as variáveis de ambiente no arquivo `.env.local` 
+
+#  instale as dependencias do projeto 
+npm install
+
+# Executar o projeto
+ npm run dev
+```
+
+#
+### Autor:
+* **Sergio Daniel Farina**
