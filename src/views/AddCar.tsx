@@ -93,6 +93,7 @@ export const AddCar = () => {
             navigate('/');
                 
         } catch (e:any) {
+            alert(error)
             if (e?.response?.data?.message){
                 return setError(e?.response?.data?.message)
             }

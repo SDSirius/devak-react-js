@@ -578,7 +578,7 @@
         }
 
         .user-object {
-            border: 1px double $error ;
+            border: 1px double $primaryColor5 ;
             position: absolute;
             display: flex;
             flex-direction: column;
@@ -621,7 +621,8 @@
                         p {
                             display: flex;
                             justify-content: center;
-                            font-size: 20px;
+                            align-items: center;
+                            font-size: 25px;
                         }
                         
                         .user-cars-specs{
@@ -629,12 +630,14 @@
                             position: absolute;
                             flex-wrap: wrap;
                             justify-content: space-evenly;
-                            overflow-x: scroll;
-                            border: 2px double black;
+                            overflow-x: auto;
+                            overflow-y: hidden;
+                            // border: 2px double blaDck;
                             border-radius: 25px;
                             bottom: 1%;
                             left: 1%;
                             right:1%;
+                            top: 36%;
         
                             .cars-object {
                                 display: flex;
@@ -646,7 +649,7 @@
                                 
                                 padding: 2%;
                                 width: 26.5%;
-                                height: 33%;
+                                height: 48%;
                 
                                 &:hover {
                                     cursor: pointer; 
@@ -664,6 +667,15 @@
                                     text-align: center;
                                     font-size: 20px;
                                     text-decoration: underline;
+                                }
+
+                                .not-allowed {
+                                    position: absolute;
+                                    top: 60%;
+                                    border: none;
+                                    width: 17%;
+                                    left: 42%;
+
                                 }
                             }
         

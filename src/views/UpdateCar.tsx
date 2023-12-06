@@ -20,7 +20,7 @@ import  plateCar  from '../assets/images/placa.png';
 
 export const UpdateCar = () => {
     const routeParams = useParams<{ id: string }>();
-    const carId = routeParams.id ?? '';
+    const carId = routeParams.id || '';
 
     const carServices = new CarServices();
     const navigate = useNavigate();
@@ -57,22 +57,25 @@ export const UpdateCar = () => {
             setColor(carDetails.color);
             setPlate(carDetails.plate);
             setImage(carDetails.file);
-    
+            
             if (carDetails.file) {
               setImage({ preview: carDetails.file, file: null });
             }
-          } catch (error) {
+        } catch (error) {
             console.error('Erro ao buscar detalhes do carro:', error);
-          }
-        };
-        fetchCarDetails();
-    }, [carId]);
-    
-    const updateCar = async () => {
-        try {
+        }
+    };
+    fetchCarDetails();
+}, [carId]);
+
+const updateCar = async () => {
+    try {
+            const numericValue = parseFloat(value) as number;
+            const numericKilometers = parseFloat(kilometers) as number;
+            
             const formData = new FormData();
             setError('');
-
+            
             if(!name || name.trim().length< 2){
                 return setError('Favor fornecer um nome corretamente');
             }
@@ -89,12 +92,8 @@ export const UpdateCar = () => {
                 return setError('forneça a numeração da placa corretamente');
             }
 
-            if(!value || value.trim().length< 2){
-                return setError('Favor fornecer um valor corretamente');
-            }
-    
-            if(!kilometers || kilometers.trim().length< 2){
-                return setError('Favor fornecer um valor para quilometragem');
+            if (isNaN(numericValue) || isNaN(numericKilometers)) {
+                return setError('Forneça valores válidos para Valor e Quilometragem.');
             }
             
             if(!yearModel || yearModel.trim().length< 2){
@@ -105,7 +104,6 @@ export const UpdateCar = () => {
                 return setError('Selecione uma foto do veículo.');
             }
             
-
             formData.append('name', name);
             formData.append('brand', brand);
             formData.append('color', color);
@@ -114,19 +112,22 @@ export const UpdateCar = () => {
             formData.append('kilometers', kilometers);
             formData.append('yearModel', yearModel);
 
-
-    // Adiciona a nova imagem apenas se for selecionada
             if (image.file) {
                 formData.append('file', image.file as Blob);
+            }else {
+                formData.append('file', image.preview as Blob )
             }
 
             setLoading(true);
             await carServices.updateCar(carId, formData);
             setLoading(false);
+            alert(`${name} atualizado com sucesso!`)
             navigate(`/carView/${carId}`);
                         
         } catch (e:any) {
+            alert(error)
             if (e?.response?.data?.message){
+
                 return setError(e?.response?.data?.message)
             }
             return setError("Erro ao cadatrar veículo, tente novamente.")
@@ -198,9 +199,8 @@ export const UpdateCar = () => {
                             setValue={setPlate}
                         />
 
-                        <button type="button" onClick={updateCar} disabled={loading}>
+                        <button type="button" onClick={() => updateCar()} disabled={loading}>
                             {loading ? 'Atualizando...' : 'Atualizar Dados!'} 
-
                         </button>
                     </div>
                 </div>

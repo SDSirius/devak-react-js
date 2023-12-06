@@ -25,7 +25,7 @@ export class CarServices extends HttpApiServices{
         await this.post(`/cars/upload`,formData);
     }
     
-    async updateCar (id:string, formData: FormData){
+    async updateCar(id:string, formData: FormData){
         await this.put(`/cars/${id}`,formData);
     }
 
