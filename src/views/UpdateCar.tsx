@@ -139,7 +139,7 @@ const updateCar = async () => {
             <SearchProvider>
                 <Header />
                 <div className="container-update-car">
-                    <h1>Errou alguma coisa? Não se preoculpe. Atualize os dados agora!</h1>
+                    <h1>Errou alguma coisa? Não se preocupe. Atualize os dados agora!</h1>
                     <UploadImage image={image} imagemPreviewClassName="avatar avatarPreview" imagemPreview={image.preview || picCar} setImage={setImage} />
                     <div className="container-edit-car">
                         <PublicInput 

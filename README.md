@@ -37,10 +37,10 @@ O projeto DeVaK utiliza as seguintes tecnologias:
 git clone https://github.com/SDSirius/devak-react-js
  
 # Congigure as variaveis
-fazer uma copia do arquivo `.env.example` e renomear o novo arquivo de `.env.local`, e configurar as variáveis de ambiente no arquivo `.env.local` 
+fazer uma copia do arquivo `.env` e renomear o novo arquivo de `.env`, e configurar as variáveis de ambiente no arquivo `.env` 
 
 #  instale as dependencias do projeto 
-npm install
+npm install ou npm i.
 
 # Executar o projeto
  npm run dev
